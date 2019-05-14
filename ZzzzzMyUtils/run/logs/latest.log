@@ -1,0 +1,108 @@
+[20:50:26] [main/INFO] [GradleStart]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/loulo/.gradle/caches/minecraft/assets, --assetIndex, 1.12, --accessToken{REDACTED}, --version, 1.12.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[20:50:26] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:50:26] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:50:26] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:50:26] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:50:26] [main/INFO] [FML]: Forge Mod Loader version 14.23.5.2824 for Minecraft 1.12.2 loading
+[20:50:26] [main/INFO] [FML]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_191, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_191\jre
+[20:50:26] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
+[20:50:26] [main/ERROR] [FML]: Full: C:\Users\loulo\.gradle\caches\modules-2\files-2.1\org.apache.maven\maven-artifact\3.5.3\7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4\maven-artifact-3.5.3.jar
+[20:50:26] [main/ERROR] [FML]: Trimmed: c:/users/loulo/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
+[20:50:26] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[20:50:26] [main/INFO] [FML]: Detected deobfuscated environment, loading log configs for colored console logs.
+[20:50:28] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
+[20:50:28] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
+[20:50:28] [main/INFO] [FML]: Searching C:\eclipse-workspace\ZzzzzMyUtils\run\.\mods for mods
+[20:50:28] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:50:28] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[20:50:28] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[20:50:28] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:50:28] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:50:28] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:50:28] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:50:28] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:50:28] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:50:29] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
+[20:50:29] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:50:29] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:50:29] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:50:29] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:50:29] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:50:29] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[20:50:30] [Client thread/INFO] [net.minecraft.client.Minecraft]: Setting user: Player339
+[20:50:33] [Client thread/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.4
+[20:50:34] [Client thread/INFO] [FML]: -- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_191, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 128949128 bytes (122 MB) / 415760384 bytes (396 MB) up to 2375024640 bytes (2265 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'ATI Technologies Inc.' Version: '4.6.13547 Compatibility Profile Context 25.20.15031.1000' Renderer: 'Radeon(TM) RX 460 Graphics'
+[20:50:34] [Client thread/INFO] [FML]: MinecraftForge v14.23.5.2824 Initialized
+[20:50:34] [Client thread/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
+[20:50:35] [Client thread/INFO] [FML]: Replaced 1036 ore ingredients
+[20:50:36] [Client thread/INFO] [FML]: Searching C:\eclipse-workspace\ZzzzzMyUtils\run\.\mods for mods
+[20:50:38] [Client thread/INFO] [FML]: Forge Mod Loader has identified 5 mods to load
+[20:50:38] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, examplemod] at CLIENT
+[20:50:38] [Client thread/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, examplemod] at SERVER
+[20:50:38] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 113451274 nanos
+[20:50:39] [Client thread/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Example Mod
+[20:50:39] [Client thread/INFO] [FML]: Processing ObjectHolder annotations
+[20:50:39] [Client thread/INFO] [FML]: Found 1168 ObjectHolder annotations
+[20:50:39] [Client thread/INFO] [FML]: Identifying ItemStackHolder annotations
+[20:50:39] [Client thread/INFO] [FML]: Found 0 ItemStackHolder annotations
+[20:50:39] [Client thread/INFO] [FML]: Configured a dormant chunk cache size of 0
+[20:50:39] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[20:50:39] [Client thread/INFO] [FML]: Applying holder lookups
+[20:50:39] [Client thread/INFO] [FML]: Holder lookups applied
+[20:50:39] [Client thread/INFO] [FML]: Applying holder lookups
+[20:50:39] [Client thread/INFO] [FML]: Holder lookups applied
+[20:50:39] [Client thread/INFO] [FML]: Applying holder lookups
+[20:50:39] [Client thread/INFO] [FML]: Holder lookups applied
+[20:50:39] [Client thread/INFO] [FML]: Applying holder lookups
+[20:50:39] [Client thread/INFO] [FML]: Holder lookups applied
+[20:50:39] [Client thread/INFO] [FML]: Injecting itemstacks
+[20:50:39] [Client thread/INFO] [FML]: Itemstack injection complete
+[20:50:39] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: OUTDATED Target: 14.23.5.2835
+[20:50:45] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
+[20:50:45] [Thread-5/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
+[20:50:45] [Thread-5/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[20:50:46] [Thread-5/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
+[20:50:46] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
+[20:50:55] [Client thread/INFO] [FML]: Max texture size: 16384
+[20:50:55] [Client thread/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 512x512 textures-atlas
+[20:50:57] [Client thread/INFO] [FML]: Applying holder lookups
+[20:50:57] [Client thread/INFO] [FML]: Holder lookups applied
+[20:50:57] [Client thread/INFO] [examplemod]: DIRT BLOCK >> minecraft:dirt
+[20:50:57] [Client thread/INFO] [FML]: Injecting itemstacks
+[20:50:57] [Client thread/INFO] [FML]: Itemstack injection complete
+[20:50:57] [Client thread/INFO] [FML]: Forge Mod Loader has successfully loaded 5 mods
+[20:50:57] [Client thread/INFO] [com.mojang.text2speech.NarratorWindows]: Narrator library for x64 successfully loaded
+[20:50:58] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
+[20:51:04] [Client thread/INFO] [net.minecraft.client.multiplayer.GuiConnecting]: Connecting to localhost, 25565
+[20:51:05] [Netty Client IO #1/INFO] [FML]: Server protocol version 2
+[20:51:05] [Netty Client IO #1/INFO] [FML]: Unexpected packet during modded negotiation - assuming vanilla or keepalives : net.minecraft.network.play.server.SPacketDisconnect
+[20:51:12] [Client thread/INFO] [net.minecraft.client.multiplayer.GuiConnecting]: Connecting to localhost, 25565
+[20:51:12] [Netty Client IO #2/INFO] [FML]: Server protocol version 2
+[20:51:12] [Netty Client IO #2/INFO] [FML]: Unexpected packet during modded negotiation - assuming vanilla or keepalives : net.minecraft.network.play.server.SPacketDisconnect
+[20:51:48] [Netty Client IO #3/INFO] [FML]: Attempting connection with missing mods [examplemod] at SERVER
+[20:51:50] [Client thread/INFO] [net.minecraft.client.multiplayer.GuiConnecting]: Connecting to localhost, 25565
+[20:51:50] [Netty Client IO #4/INFO] [FML]: Server protocol version 2
+[20:51:50] [Netty Client IO #4/INFO] [FML]: Unexpected packet during modded negotiation - assuming vanilla or keepalives : net.minecraft.network.play.server.SPacketDisconnect
+[20:54:23] [Netty Client IO #6/INFO] [FML]: Attempting connection with missing mods [examplemod] at SERVER
+[20:54:24] [Client thread/INFO] [net.minecraft.client.multiplayer.GuiConnecting]: Connecting to localhost, 25565
+[20:54:24] [Netty Client IO #7/INFO] [FML]: Server protocol version 2
+[20:54:24] [Netty Client IO #7/INFO] [FML]: Attempting connection with missing mods [examplemod] at SERVER
+[20:54:24] [Client thread/INFO] [FML]: Injecting existing registry data into this client instance
+[20:54:25] [Client thread/INFO] [FML]: Applying holder lookups
+[20:54:25] [Client thread/INFO] [FML]: Holder lookups applied
+[20:54:25] [Netty Client IO #7/INFO] [FML]: [Netty Client IO #7] Client side modded connection established
+[20:56:49] [Client thread/INFO] [net.minecraft.client.gui.GuiNewChat]: [CHAT] Player339 fell from a high place
+[20:57:27] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
+[20:57:27] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
+[20:57:27] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com
