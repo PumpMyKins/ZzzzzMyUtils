@@ -6,61 +6,102 @@ import fr.pumpmykins.zutils.utils.HomeData;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
 public class SetHomeCommand implements ICommand {
 
 	public SetHomeCommand(HomeData homedata) {
-		// TODO Auto-generated constructor stub
+
+		this.homedata = homedata;
+
 	}
 
 	@Override
 	public int compareTo(ICommand o) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return "sethome";
 	}
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public List<String> getAliases() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		// TODO Auto-generated method stub
 
-	}
+
+		if (sender instanceof Entityplayer) {
+			
+			EntityPlayer player = (EntityPlayer) sender;
+
+
+			if(args.length < 0) 
+			{
+
+
+				if(args[0]) 
+				{
+					for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+						
+
+						player.setHome(set.PosX(), set.PosY(), set.PosZ());
+
+						else if(args.length == 1) 
+						
+						{
+							
+							
+							
+							
+						}
+
+					}
+
+				}
+
+			}
+
+		}else 
+		
+		{
+			sender.sendMessage(Erreur);
+			
+			
+		}
+	}		
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
 			BlockPos targetPos) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public boolean isUsernameIndex(String[] args, int index) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
