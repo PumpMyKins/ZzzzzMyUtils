@@ -12,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class SetHomeCommand implements ICommand {
 
+	private HomeData homedata;
+	
 	public SetHomeCommand(HomeData homedata) {
 
 		this.homedata = homedata;
@@ -45,46 +47,42 @@ public class SetHomeCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-
 		if (sender instanceof Entityplayer) {
-			
+
 			EntityPlayer player = (EntityPlayer) sender;
 
+			String homename = "";
+			if(args.length < 0) {
 
-			if(args.length < 0) 
-			{
+				homename = "home";
+			} else {
 
+				homename = args[0];
+			}
+			
+			boolean toset = true;
+			
+			for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 
-				if(args[0]) 
-				{
-					for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
-						
+				if(h.getHome_name() == homename) {
 
-						player.setHome(set.PosX(), set.PosY(), set.PosZ());
-
-						else if(args.length == 1) 
-						
-						{
-							
-							
-							
-							
-						}
-
-					}
-
+					// Send name already use
+					toset = false;
 				}
-
+			}
+			
+			if(toset) {
+				
+				Home h = new Home();
+				h.setHome_Name = homename;
+				// Set other properties 
+				
+				this.homedata.addHome(h);
 			}
 
-		}else 
-		
-		{
-			sender.sendMessage(Erreur);
-			
-			
 		}
-	}		
+
+	}
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
