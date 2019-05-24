@@ -9,6 +9,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class SetHomeCommand implements ICommand {
 
@@ -68,6 +70,9 @@ public class SetHomeCommand implements ICommand {
 
 					// Send name already use
 					toset = false;
+					ITextComponent hm = new TextComponentString("Nom déjà utilisé");
+					hm.setStyle(PmkStyleTable.itemNumber());
+					sender.sendMessage(hm);
 				}
 			}
 			
