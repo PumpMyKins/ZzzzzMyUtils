@@ -54,7 +54,7 @@ public class TpaCommand implements ICommand {
 				
 			} else {
 				
-				if() {
+				if( ) {
 					
 					
 					
