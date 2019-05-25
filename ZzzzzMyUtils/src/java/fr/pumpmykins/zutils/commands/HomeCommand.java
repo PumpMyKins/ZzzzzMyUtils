@@ -54,6 +54,20 @@ public class HomeCommand implements ICommand {
 			
 			EntityPlayer player = (EntityPlayer) sender;
 			
+			for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+				
+				h.getHome_name() == home;
+				
+				if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
+					
+					player.changeDimension(h.getWorld());
+				}
+				BlockPos pos = h.getPos();
+				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+			}
+			
+			
+			
 			if(args[0] == "list") {
 				
 				ITextComponent init = new TextComponentString("Liste de vos homes :");
@@ -80,6 +94,8 @@ public class HomeCommand implements ICommand {
 						
 						break;
 					}
+					
+					
 				}
 				
 			}
