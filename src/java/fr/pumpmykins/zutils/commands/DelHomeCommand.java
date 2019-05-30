@@ -55,6 +55,7 @@ public class DelHomeCommand implements ICommand {
 			String homename = "";
 			
 			if(args.length < 0) {
+				if(args < 0) {
 				
 				ITextComponent hm = new TextComponentString("Nom du home à suprimer");
 				hm.setStyle(PmkStyleTable.itemNumber());

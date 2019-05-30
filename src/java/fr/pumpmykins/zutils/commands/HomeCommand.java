@@ -66,6 +66,23 @@ public class HomeCommand implements ICommand {
 				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
 			}
 			
+			if(args.length < 1) {
+			    args = new String[] {("home")};
+			    
+			    for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+					
+					h.getHome_name() == home;
+					
+					if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
+						
+						player.changeDimension(h.getWorld());
+					}
+					
+					
+					BlockPos pos = h.getPos();
+					player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+				}
+			}
 			
 			
 			if(args[0] == "list") {
