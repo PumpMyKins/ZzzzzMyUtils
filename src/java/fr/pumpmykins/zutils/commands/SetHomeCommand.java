@@ -78,11 +78,20 @@ public class SetHomeCommand implements ICommand {
 			
 			if(toset) {
 				
-				Home h = new Home();
-				h.setHome_Name = homename;
-				// Set other properties 
+				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 				
+				Home h = new Home();
+				// Set other properties 
 				this.homedata.addHome(h);
+				
+				player.setPosition(pos.setX(), pos.setY(), pos.setZ());
+				BlockPos pos = h.getPos();
+				h.setHome_name() = homename;
+				h.setUsername() = player;
+				h.setOwner() = player.getGameProfile();
+				h.setWorld() = player.getEntityWorld().provider.getDimension() ;
+				
+				}
 			}
 
 		}
