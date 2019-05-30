@@ -55,40 +55,40 @@ public class DelHomeCommand implements ICommand {
 			String homename = "";
 			
 			if(args.length < 0) {
-				if(args < 0) {
 				
-				ITextComponent hm = new TextComponentString("Nom du home à suprimer");
-				hm.setStyle(PmkStyleTable.itemNumber());
-				sender.sendMessage(hm);
 				
-			} else {
+				if(args.length < 1) {
+					
+				    args = new String[] {("home")};
+    
+				} else {
 					
 					homename = args[0];
 					
-			}
+				}
 			
-			boolean toset = true;
 			
 			for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 			
-				if(h.getHome_name() == homename) {
+				if(h.getHome_name() != homename) {
 					
-					toset = false;
-			
+					
+					ITextComponent init = new TextComponentString("preciser le nom du home");
+					init.setStyle(PmkStyleTable.orangeBold());
+					sender.sendMessage(init);
 			 
 				}
 				
-				if(toset) {
+				if(h.getHome_name() == homename) {
 					
-					h.setHome_Name = homename;
-					this.homedata.removeHome(h);
+					this.homedata.removeHome(homename);
 				}
 			}
 		}
 		
 
 	}
-
+}
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		
