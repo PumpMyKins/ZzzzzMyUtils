@@ -70,13 +70,14 @@ public class SetHomeCommand implements ICommand {
 
 					// Send name already use
 					toset = false;
-					ITextComponent hm = new TextComponentString("Nom déjà utilisé");
-					hm.setStyle(PmkStyleTable.itemNumber());
-					sender.sendMessage(hm);
+					player.getPosition(pos.setX(), pos.setY(), pos.setZ());
+					BlockPos pos = h.getPos();
+					h.setWorld() = player.getEntityWorld().provider.getDimension();
+					
 				}
 			}
 			
-			if(toset) {
+			if(toset = true) {
 				
 				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 				
@@ -84,12 +85,12 @@ public class SetHomeCommand implements ICommand {
 				// Set other properties 
 				this.homedata.addHome(h);
 				
-				player.setPosition(pos.setX(), pos.setY(), pos.setZ());
+				player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 				BlockPos pos = h.getPos();
 				h.setHome_name() = homename;
 				h.setUsername() = player;
 				h.setOwner() = player.getGameProfile();
-				h.setWorld() = player.getEntityWorld().provider.getDimension() ;
+				h.setWorld() = player.getEntityWorld().provider.getDimension();
 				
 				}
 			}
