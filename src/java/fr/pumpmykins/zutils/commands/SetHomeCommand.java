@@ -99,74 +99,14 @@ public class SetHomeCommand implements ICommand {
 							
 						}
 						}
-						
-						if(toset = true) {
-							
-							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-						
-								Home h = new Home();
-								// Set other properties 
-								this.homedata.addHome(h);
-						
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setHome_name() = homename;
-								h.setUsername() = player;
-								h.setOwner() = player.getGameProfile();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
-						
-							}
-						}
-					}
-				}
-			}else {
-				
-				for(Home h : this.homedata.getHomeByUsername()) {
-					
-					if(getHomeByUsername().Size >= check1) {
-						
-						ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
-						
-					}else {
-						
-						
-						for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-							
-							
-							if(h.getHome_name() == homename) {
 
-
-								toset = false;
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
-							
-							}
-						}
-					}
-						
-						if(toset = true) {
-							
-							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-						
-								Home h = new Home();
-								// Set other properties 
-								this.homedata.addHome(h);
-						
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setHome_name() = homename;
-								h.setUsername() = player;
-								h.setOwner() = player.getGameProfile();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
-						
 							}
 						}
 					}
 				}
 			
+			}
+
 			if(sender.hasPermission("rank.tier2")) {
 				
 				int check2 = checkPermission();
@@ -196,26 +136,12 @@ public class SetHomeCommand implements ICommand {
 						}
 						}
 						
-						if(toset = true) {
-							
-							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 						
-								Home h = new Home();
-								// Set other properties 
-								this.homedata.addHome(h);
-						
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setHome_name() = homename;
-								h.setUsername() = player;
-								h.setOwner() = player.getGameProfile();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
 						
 							}
 						}
 					}
 				}
-			}else {
 				
 				for(Home h : this.homedata.getHomeByUsername()) {
 					
@@ -293,54 +219,10 @@ public class SetHomeCommand implements ICommand {
 							
 						}
 						}
-						
-						if(toset = true) {
-							
-							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-						
-								Home h = new Home();
-								// Set other properties 
-								this.homedata.addHome(h);
-						
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setHome_name() = homename;
-								h.setUsername() = player;
-								h.setOwner() = player.getGameProfile();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
-						
-							}
-						}
 					}
-				}
-			}else {
-				
-				for(Home h : this.homedata.getHomeByUsername()) {
 					
-					if(getHomeByUsername().Size >= check1) {
-						
-						ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
-						
-					}else {
-						
-						
-						for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-							
-							
-							if(h.getHome_name() == homename) {
-
-
-								toset = false;
-								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-								BlockPos pos = h.getPos();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
-							
-							}
-						}
-						
-						if(toset = true) {
+					
+						if(!toset) {
 							
 							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 						
@@ -359,14 +241,7 @@ public class SetHomeCommand implements ICommand {
 						}
 					}
 				}
-								
-							
-							
-			}
-								
-							
-							
-		}
+			
 	}
 
 
