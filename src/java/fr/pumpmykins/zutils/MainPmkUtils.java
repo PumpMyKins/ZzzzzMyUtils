@@ -21,6 +21,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.server.permission.DefaultPermissionLevel;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 @Mod(useMetadata=true, modid = "zpmkutils")
 public class MainPmkUtils {
@@ -48,7 +50,10 @@ public class MainPmkUtils {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		
-		
+		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier0");
+		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier1");
+		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.OP, "rank.tier2");
+		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.OP, "rank.tier3");
 	}
 	
 	@EventHandler
