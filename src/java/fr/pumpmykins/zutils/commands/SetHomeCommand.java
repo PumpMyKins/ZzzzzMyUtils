@@ -54,12 +54,14 @@ public class SetHomeCommand implements ICommand {
 			EntityPlayer player = (EntityPlayer) sender;
 
 			String homename = "";
-			if(args.length < 0) {
-
-				homename = "home";
-			} else {
+			if(args.length > 0) {
 
 				homename = args[0];
+				
+				
+			} else {
+
+				homename = "home";
 			}
 			
 			boolean toset = true;

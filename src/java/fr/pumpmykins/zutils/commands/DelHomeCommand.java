@@ -54,16 +54,14 @@ public class DelHomeCommand implements ICommand {
 			
 			String homename = "";
 			
-			if(args.length < 0) {
+			if(args.length > 0) {
 				
 				
-				if(args.length < 1) {
-					
-				    args = new String[] {("home")};
-    
+				homename = args[0];
+				
 				} else {
 					
-					homename = args[0];
+					homename = "home";
 					
 				}
 			
@@ -73,7 +71,7 @@ public class DelHomeCommand implements ICommand {
 				if(h.getHome_name() != homename) {
 					
 					
-					ITextComponent init = new TextComponentString("preciser le nom du home");
+					ITextComponent init = new TextComponentString("se home n'existe pas");
 					init.setStyle(PmkStyleTable.orangeBold());
 					sender.sendMessage(init);
 			 
