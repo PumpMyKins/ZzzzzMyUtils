@@ -56,7 +56,7 @@ public class HomeCommand implements ICommand {
 			
 			for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
 				
-				h.getHome_name() == home;
+				h.getHome_name() = home;
 				
 				if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
 					
@@ -71,23 +71,11 @@ public class HomeCommand implements ICommand {
 					
 					BlockPos pos = h.getPos();
 					player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-				}
+				
 		
-		if(args.length < 1) {
-			args = new String[] {("home")};
-		    
-			for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
-				
-				h.getHome_name() == home;
-				
-				if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
-					
-					player.changeDimension(h.getWorld());
-				}
-			}
-		}	
+	
 			
-			if(args[0] == "list") {
+		}else if(args[0] == "list") {
 				
 				ITextComponent init = new TextComponentString("Liste de vos homes :");
 				init.setStyle(PmkStyleTable.orangeBold());
