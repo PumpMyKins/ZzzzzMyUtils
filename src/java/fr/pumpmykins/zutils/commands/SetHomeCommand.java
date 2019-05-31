@@ -11,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 public class SetHomeCommand implements ICommand {
 
@@ -103,8 +104,12 @@ public class SetHomeCommand implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
+		if(sender instancof EntityPlayer) {
+			
+			return PermissionAPI.hasPermission((EntityPlayer) sender, "rank.tier1");
+		}
 
-		return false;
+		return true;
 	}
 
 	@Override
