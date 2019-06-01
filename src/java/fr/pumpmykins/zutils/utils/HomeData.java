@@ -37,16 +37,16 @@ public class HomeData extends WorldSavedData {
 			int y = tmp_nbt.getInteger("y");
 			int z = tmp_nbt.getInteger("z");
 			String home_name = tmp_nbt.getString("home_name");
-			int rank1 = tmp_nbt.getInteger("rank1");
-			int rank2 = tmp_nbt.getInteger("rank2");
-			int rank3 = tmp_nbt.getInteger("rank3");
 			
 			BlockPos pos = new BlockPos(x,y,z);
 			
 			Home tmp_h = new Home(world, pos, owner, username, home_name);
+
 			
 			this.homeList.add(tmp_h);
 		}
+		
+		
 	}
 
 	@Override
@@ -63,12 +63,10 @@ public class HomeData extends WorldSavedData {
 			tmp.setInteger("x", h.getPos().getX());
 			tmp.setInteger("y", h.getPos().getY());
 			tmp.setInteger("z", h.getPos().getZ());
-			tmp.setInteger("rank1", h.getRank1());
-			tmp.setInteger("rank2", h.getRank2());
-			tmp.setInteger("rank3", h.getRank3());
 			
 			home_list.appendTag(tmp);
 		}
+	
 		compound.setTag(MainPmkUtils.getHomeKey(), home_list);
 		return compound;
 	}

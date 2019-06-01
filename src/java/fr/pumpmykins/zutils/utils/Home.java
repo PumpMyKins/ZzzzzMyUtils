@@ -11,6 +11,7 @@ public class Home {
 	private UUID owner;
 	private String username;
 	private String home_name;
+	private int rank0;
 	private int rank1;
 	private int rank2;
 	private int rank3;
@@ -24,35 +25,15 @@ public class Home {
 		this.home_name = null;
 		
 	}
-	public Home(int w, BlockPos p, UUID o, String s, String hn, int a, int b, int c) {
+	public Home(int w, BlockPos p, UUID o, String s, String hn, int a, int b, int c, int d) {
 		
 		this.world = w;
 		this.pos = p;
 		this.owner = o;
 		this.username = s;
 		this.home_name = hn;
-		this.rank1 = a;
-		this.rank2 = b;
-		this.rank3 = c;
 	}
-	public int getRank1() {
-		return rank1;
-	}
-	public void setRank1(int rank1) {
-		this.rank1 = rank1;
-	}
-	public int getRank2() {
-		return rank2;
-	}
-	public void setRank2(int rank2) {
-		this.rank2 = rank2;
-	}
-	public int getRank3() {
-		return rank3;
-	}
-	public void setRank3(int rank3) {
-		this.rank3 = rank3;
-	}
+
 	public BlockPos getPos() {
 		return pos;
 	}

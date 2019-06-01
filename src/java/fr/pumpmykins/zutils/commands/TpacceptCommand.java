@@ -41,9 +41,9 @@ public class TpaacceptCommand implements ICommand {
 		if(sender instanceof Entityplayer){
 			
 			EntityPlayer player = (EntityPlayer) sender;
-			player.getPlayerCoordinates();
-				﻿﻿﻿﻿
-			
+
+			if(args.length > 0) {
+				
 		}
 		
 		

@@ -40,28 +40,43 @@ public class TpaCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		
-		if(sender instanceof Entityplayer) {
+		if(sender instanceof Entityplayer){
 			
 			EntityPlayer player = (EntityPlayer) sender;
-			
-			if(args.length < 0) {
+			EntityPlayer receiver = null;
+
+			if(args.length > 0) {
 				
-				ITextComponent hm = new TextComponentString("il manque le pseudo du joueur!!");
-				hm.setStyle(PmkStyleTable.itemNumber());
-				sender.sendMessage(hm);
-				
-				
-				
-			} else {
-				
-				if( ) {
+				for(World w : server.worlds) {
+                    
+					receiver = w.getPlayerEntityByName(args[0]);
 					
 					
+					if(receiver != null)
+						
+						break;
 					
-				}
+					else
+						
+						continue;
+                }
 				
+                if(receiver == null) {
+                	
+                	ITextComponent init = new TextComponentString("joueur inconnue");
+    				init.setStyle(PmkStyleTable.orangeBold());
+    				sender.sendMessage(init);
+                }
+                
+                else {
+                	
+                	
+                	
+                }
 				
 			}
+				
+			
 		}
 		
 

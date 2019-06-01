@@ -13,6 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 public class HomeCommand implements ICommand {
 
@@ -46,9 +47,12 @@ public class HomeCommand implements ICommand {
 		
 		return null;
 	}
+	
+	
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+
 
 		if(args.length > 0) {
 			
@@ -111,8 +115,10 @@ public class HomeCommand implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		
+
+		return true;
 	}
 
 	@Override
