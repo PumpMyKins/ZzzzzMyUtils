@@ -50,7 +50,6 @@ public class MainPmkUtils {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		
-		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier0");
 		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier1");
 		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.OP, "rank.tier2");
 		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.OP, "rank.tier3");

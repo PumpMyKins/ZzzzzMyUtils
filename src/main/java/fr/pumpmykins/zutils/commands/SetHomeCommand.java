@@ -101,9 +101,11 @@ public class SetHomeCommand implements ICommand {
 							
 							toset = 1;
 						}
+						break;
 						}
 
 					}
+					break;
 				}
 			}
 				
@@ -137,9 +139,10 @@ public class SetHomeCommand implements ICommand {
 							
 							toset = 2;
 						}
+						break;
 						}	
 					}
-		
+					break;
 				}
 	
 
@@ -164,7 +167,7 @@ public class SetHomeCommand implements ICommand {
 							if(h.getHome_name() == homename) {
 
 
-							toset = false;
+							toset = 1;
 							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 							BlockPos pos = h.getPos();
 							h.setWorld() = player.getEntityWorld().provider.getDimension();
@@ -173,6 +176,7 @@ public class SetHomeCommand implements ICommand {
 							
 							toset = 2;
 						}
+							break;
 						}
 					}
 					
@@ -191,11 +195,15 @@ public class SetHomeCommand implements ICommand {
 								h.setUsername() = player;
 								h.setOwner() = player.getGameProfile();
 								h.setWorld() = player.getEntityWorld().provider.getDimension();
+								
+								break;
 						
 							}
 						}
+						break;
 					}
 				}
+			
 			
 				}
 			}

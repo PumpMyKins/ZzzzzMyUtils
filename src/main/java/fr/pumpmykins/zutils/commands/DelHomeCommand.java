@@ -86,11 +86,11 @@ public class DelHomeCommand implements ICommand {
 		
 
 	}
-}
+
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		
-		return false;
+		return true;
 	}
 
 	@Override
