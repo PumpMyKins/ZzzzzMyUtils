@@ -2,6 +2,7 @@ package fr.pumpmykins.zutils.commands;
 
 import java.util.List;
 
+import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -10,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
 
 public class TpaCommand implements ICommand {
 
@@ -40,7 +42,7 @@ public class TpaCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		
-		if(sender instanceof Entityplayer){
+		if(sender instanceof EntityPlayer){
 			
 			EntityPlayer player = (EntityPlayer) sender;
 			EntityPlayer receiver = null;
@@ -52,27 +54,23 @@ public class TpaCommand implements ICommand {
 					receiver = w.getPlayerEntityByName(args[0]);
 					
 					
-					if(receiver != null)
+					if(receiver == null) {
 						
-						break;
+						
+						ITextComponent init = new TextComponentString("joueur inconnue");
+	    				init.setStyle(PmkStyleTable.orangeBold());
+	    				sender.sendMessage(init);
+						
+	    				break;
 					
-					else
+					}else {
 						
-						continue;
-                }
+						
+						
+						
+					}
 				
-                if(receiver == null) {
-                	
-                	ITextComponent init = new TextComponentString("joueur inconnue");
-    				init.setStyle(PmkStyleTable.orangeBold());
-    				sender.sendMessage(init);
-                }
-                
-                else {
-                	
-                	
-                	
-                }
+               
 				
 			}
 				

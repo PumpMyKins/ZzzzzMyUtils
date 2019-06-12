@@ -2,15 +2,19 @@ package fr.pumpmykins.zutils.commands;
 
 import java.util.List;
 
+import fr.pumpmykins.zutils.utils.Home;
 import fr.pumpmykins.zutils.utils.HomeData;
+import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.config.Config;
 import net.minecraftforge.server.permission.PermissionAPI;
 
 public class SetHomeCommand implements ICommand {
@@ -64,7 +68,7 @@ public class SetHomeCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-		if (sender instanceof Entityplayer) {
+		if (sender instanceof EntityPlayer) {
 
 			EntityPlayer player = (EntityPlayer) sender;
 			
@@ -86,108 +90,100 @@ public class SetHomeCommand implements ICommand {
 				
 			}
 			
-			if(sender.hasPermission("rank.tier1")) {
+			if(PermissionAPI.hasPermission(player, "rank.tier1")) {
 				
 				
 				
 				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 					
-					if(getHomeByUsername().Size >= check1) {
-						
-						ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
-						
-					}else {
-							
+					if(5 >= check1) {
+
+
 						if(h.getHome_name() == homename) {
 
 
 							toset = false;
-							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-							BlockPos pos = h.getPos();
-							player.getEntityWorld().provider.getDimension(h.setWorld());
-							
+							h.setPos(player.getPosition());
+							h.setWorld(player.getEntityWorld().provider.getDimension());
 						}else {
+
+
+							ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
+							init.setStyle(PmkStyleTable.orangeBold());
+							sender.sendMessage(init);
+						}
+
+						
+					}else {
 							
 							toset = true;
 						}
 						
 
-					}
-					break;
+
 				}
 			}
 				
-			if(player.hasPermission("rank.tier2")) {
+			if(PermissionAPI.hasPermission(player, "rank.tier2")) {
 				
 				
 				
 				for(Home h : this.homedata.getHomeByUsername(getName())) {
-					
-					if(getHomeByUsername().Size >= check2) {
-						
-						ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
-						
-					}else {
-						
-						
-						for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-							
-							
+
+					if(7 >= check2) {
+
+
 						if(h.getHome_name() == homename) {
 
 
 							toset = false;
-							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-							BlockPos pos = h.getPos();
-							player.getEntityWorld().provider.getDimension(h.setWorld());
-							
+							h.setPos(player.getPosition());
+							h.setWorld(player.getEntityWorld().provider.getDimension());
 						}else {
-							
-							toset = true;
+
+
+							ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
+							init.setStyle(PmkStyleTable.orangeBold());
+							sender.sendMessage(init);
 						}
-						break;
-						}	
+
+
+					}else {
+
+						toset = true;
 					}
-					break;
 				}
+
 	
 
-			if(player.hasPermission("rank.tier3")) {
-				
-				
+			if(PermissionAPI.hasPermission(player, "rank.tier3")) {
+
+
 				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-					
-					if(getHomeByUsername().Size >= check3) {
-						
-						ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
-						
-					}else {
-						
-						
-						for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-							
-							
-							if(h.getHome_name() == homename) {
+
+					if(8 >= check3) {
+
+
+						if(h.getHome_name() == homename) {
 
 
 							toset = false;
-							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-							BlockPos pos = h.getPos();
-							player.getEntityWorld().provider.getDimension(h.setWorld());
-							
+							h.setPos(player.getPosition());
+							h.setWorld(player.getEntityWorld().provider.getDimension());
 						}else {
-							
-							toset = true;
+
+
+							ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
+							init.setStyle(PmkStyleTable.orangeBold());
+							sender.sendMessage(init);
 						}
-							break;
-						}
+
+
+					}else {
+
+						toset = true;
 					}
+				}
 					
 					
 						if(!toset) {
@@ -198,88 +194,89 @@ public class SetHomeCommand implements ICommand {
                             check3 = getMaxHomeT3 + 1;
                             check4 = getMaxHomeT0 + 1;
 						
-                            if((player.hasPermission("rank.tier1")) && (getMaxHomeT1 != 5)) {
-                            	
-                            	
-                            	for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-						
-                            		Home h = new Home();
-                            		// Set other properties 
-                            		this.homedata.addHome(h);
-						
-                            		player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-                            		BlockPos pos = h.getPos();
-                            		h.setHome_name(homename);
-                            		player.getName(h.setUsername());
-                            		player.getGameProfile(h.setOwner());
-                            		player.getEntityWorld().provider.getDimension(h.setWorld());
+                            if((PermissionAPI.hasPermission(player, "rank.tier1")) && (getMaxHomeT1 != 5)) {
+
+								Home h = new Home();
+
+								// Set other properties
+								this.homedata.addHome(h);
+
+								BlockPos pos = h.getPos();
+								player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+
+								h.setHome_name(homename);
+								h.setUsername(player.getName());
+								h.setOwner(player.getUniqueID());
+								h.setWorld(player.getEntityWorld().provider.getDimension());
 								
-                            		break;
+
                             	}
-                            }
+
                             
                             
                             
-                            if((player.hasPermission("rank.tier2")) && (getMaxHomeT2 != 7)) {
-                            	
-                            	for(Home h : this.homedata.getHomeByUsername(player.getName())){
-                            		
-                            		Home h = new Home();
-                            		// Set other properties 
-                            		this.homedata.addHome(h);
-						
-                            		player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-                            		BlockPos pos = h.getPos();
-                            		h.setHome_name(homename);
-                            		player.getName(h.setUsername());
-                            		player.getGameProfile(h.setOwner());
-                            		player.getEntityWorld().provider.getDimension(h.setWorld());
+                            if((PermissionAPI.hasPermission(player, "rank.tier2")) && (getMaxHomeT2 != 7)) {
+
+									Home h = new Home();
+
+									// Set other properties
+									this.homedata.addHome(h);
+
+									BlockPos pos = h.getPos();
+									h.setPos(player.getPosition());
+
+									h.setHome_name(homename);
+									h.setUsername(player.getName());
+									h.setOwner(player.getUniqueID());
+									h.setWorld(player.getEntityWorld().provider.getDimension());
 								
-                            		break;
+
 	
                             	}
 
-                            }
+
                             
-                            if((player.hasPermission("rank.tier3")) && (getMaxHomeT2 != 8)) {
+                            if((PermissionAPI.hasPermission(player, "rank.tier3")) && (getMaxHomeT2 != 8)) {
                             	
-                            	for(Home h : this.homedata.getHomeByUsername(player.getName())){
-                            		
-                            		Home h = new Home();
+
+
+									Home h = new Home();
                             		// Set other properties 
                             		this.homedata.addHome(h);
-						
-                            		player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-                            		BlockPos pos = h.getPos();
+
+
+									h.setPos(player.getPosition());
+
                             		h.setHome_name(homename);
-                            		player.getName(h.setUsername());
-                            		player.getGameProfile(h.setOwner());
-                            		player.getEntityWorld().provider.getDimension(h.setWorld());
+                            		h.setUsername(player.getName());
+                            		h.setOwner(player.getUniqueID());
+									h.setWorld(player.getEntityWorld().provider.getDimension());
 								
-                            		break;
+
 	
-                            	}
+
 
                             }
                             
                             if(getMaxHomeT2 != 4) {
                             	
-                            	for(Home h : this.homedata.getHomeByUsername(player.getName())){
-                            		
-                            		Home h = new Home();
-                            		// Set other properties 
+
+
+									Home h = new Home();
+
                             		this.homedata.addHome(h);
-						
-                            		player.getPosition(pos.setX(), pos.setY(), pos.setZ());
-                            		BlockPos pos = h.getPos();
+
+
+
+									h.setPos(player.getPosition());
                             		h.setHome_name(homename);
-                            		player.getName(h.setUsername());
-                            		player.getGameProfile(h.setOwner());
-                            		player.getEntityWorld().provider.getDimension(h.setWorld());
+                            		h.setUsername(player.getName());
+                            		h.setOwner(player.getUniqueID());
+									h.setWorld(player.getEntityWorld().provider.getDimension());
 								
-                            		break;
+
 	
-                            	}
+
 
                             }
                             
@@ -287,7 +284,7 @@ public class SetHomeCommand implements ICommand {
 						
 						
 						
-						break;
+
 						
 					}
 				}
@@ -295,7 +292,7 @@ public class SetHomeCommand implements ICommand {
 			
 				}
 			}
-		}
+
 
 			
 
@@ -308,7 +305,7 @@ public class SetHomeCommand implements ICommand {
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		
-		}
+
 
 		return true;
 	}
