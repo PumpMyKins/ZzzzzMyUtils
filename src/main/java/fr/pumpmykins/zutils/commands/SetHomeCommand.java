@@ -47,6 +47,18 @@ public class SetHomeCommand implements ICommand {
 		return null;
 	}
 	
+	@Config.RangeInt(min = 0, max = 5)
+	private static int getMaxHomeT1 = 0;
+
+	@Config.RangeInt(min = 0, max = 7)
+	private static int getMaxHomeT2 = 0;
+
+	@Config.RangeInt(min = 0, max = 8)
+	private static int getMaxHomeT3 = 0;
+
+	@Config.RangeInt(min = 0, max = 4)
+	private static int getMaxHomeT0 = 0;
+	
 	
 
 	@Override
@@ -56,26 +68,29 @@ public class SetHomeCommand implements ICommand {
 
 			EntityPlayer player = (EntityPlayer) sender;
 			
-			
+			int check1 = getMaxHomeT1;
+			int check2 = getMaxHomeT2;
+			int check3 = getMaxHomeT3;
+			int check4 = getMaxHomeT0;
 
 			String homename = "";
-			int toset = 0;
+			boolean toset = false;
 			
-			if(args.length > 0) {
+			if(args.length == 0) {
 
-				homename = args[0];
+				homename = "home";
 								
 			} else {
 
-				homename = "home";
+				homename = args[0];
 				
 			}
 			
 			if(sender.hasPermission("rank.tier1")) {
 				
-				int check1 = checkPermission();
+				int check1 = getMaxHomeT1;
 				
-				for(Home h : this.homedata.getHomeByUsername()) {
+				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 					
 					if(getHomeByUsername().Size >= check1) {
 						
@@ -84,36 +99,31 @@ public class SetHomeCommand implements ICommand {
 						sender.sendMessage(init);
 						
 					}else {
-						
-						
-						for(Home h : this.homedata.getHomeByUsername(player.getName())) {
-							
 							
 						if(h.getHome_name() == homename) {
 
 
-							toset = 2;
+							toset = false;
 							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 							BlockPos pos = h.getPos();
-							h.setWorld() = player.getEntityWorld().provider.getDimension();
+							player.getEntityWorld().provider.getDimension(h.setWorld());
 							
 						}else {
 							
-							toset = 1;
+							toset = true;
 						}
-						break;
-						}
+						
 
 					}
 					break;
 				}
 			}
 				
-			if(sender.hasPermission("rank.tier2")) {
+			if(player.hasPermission("rank.tier2")) {
 				
 				int check2 = checkPermission();
 				
-				for(Home h : this.homedata.getHomeByUsername()) {
+				for(Home h : this.homedata.getHomeByUsername(getName())) {
 					
 					if(getHomeByUsername().Size >= check2) {
 						
@@ -130,14 +140,14 @@ public class SetHomeCommand implements ICommand {
 						if(h.getHome_name() == homename) {
 
 
-							toset = 1;
+							toset = false;
 							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 							BlockPos pos = h.getPos();
-							h.setWorld() = player.getEntityWorld().provider.getDimension();
+							player.getEntityWorld().provider.getDimension(h.setWorld());
 							
 						}else {
 							
-							toset = 2;
+							toset = true;
 						}
 						break;
 						}	
@@ -146,11 +156,11 @@ public class SetHomeCommand implements ICommand {
 				}
 	
 
-			if(sender.hasPermission("rank.tier3")) {
+			if(player.hasPermission("rank.tier3")) {
 				
 				int check3 = checkPermission();
 				
-				for(Home h : this.homedata.getHomeByUsername()) {
+				for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 					
 					if(getHomeByUsername().Size >= check3) {
 						
@@ -167,21 +177,27 @@ public class SetHomeCommand implements ICommand {
 							if(h.getHome_name() == homename) {
 
 
-							toset = 1;
+							toset = false;
 							player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 							BlockPos pos = h.getPos();
-							h.setWorld() = player.getEntityWorld().provider.getDimension();
+							player.getEntityWorld().provider.getDimension(h.setWorld());
 							
 						}else {
 							
-							toset = 2;
+							toset = true;
 						}
 							break;
 						}
 					}
 					
 					
-						if(toset = 2) {
+						if(!toset) {
+							
+							
+							check1 = getMaxHomeT1 + 1;
+							check2 = getMaxHomeT2 + 1;
+                            check3 = getMaxHomeT3 + 1;
+                            check4 = getMaxHomeT0 + 1;
 							
 							for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 						
@@ -191,15 +207,18 @@ public class SetHomeCommand implements ICommand {
 						
 								player.getPosition(pos.setX(), pos.setY(), pos.setZ());
 								BlockPos pos = h.getPos();
-								h.setHome_name() = homename;
-								h.setUsername() = player;
-								h.setOwner() = player.getGameProfile();
-								h.setWorld() = player.getEntityWorld().provider.getDimension();
+								h.setHome_name(homename);
+								player.getName(h.setUsername());
+								player.getGameProfile(h.setOwner());
+								player.getEntityWorld().provider.getDimension(h.setWorld());
 								
 								break;
 						
 							}
 						}
+						
+						
+						
 						break;
 					}
 				}
@@ -219,30 +238,7 @@ public class SetHomeCommand implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		if(sender instancof EntityPlayer) {
-			
-			if(PermissionAPI.hasPermission((EntityPlayer) sender, "rank.tier1")){
-				
-				
-			    return 5;
-			    
-			    // nombre de home pour un utilisateur tier 1
-			    
-			} else if(PermissionAPI.hasPermission((EntityPlayer) sender, "rank.tier2"))
-			
-			{
-			    return 7;     // nombre de home pour un utilisateur tier 2
-			    
-			}  else if(PermissionAPI.hasPermission((EntityPlayer) sender, "rank.tier3"))
-			{
-			    
-				return 8;  
-				// nombre de home pour un utilisateur de tier 3
-			} else {
-				
-				return 4;     // nombre de home pour un utilisateur lambda
-				
-			}
+		
 		}
 
 		return true;
