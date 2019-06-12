@@ -2,9 +2,7 @@ package fr.pumpmykins.zutils.commands;
 
 import java.util.List;
 
-import fr.pumpmykins.zutils.utils.Home;
 import fr.pumpmykins.zutils.utils.HomeData;
-import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -15,8 +13,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 public class DelHomeCommand implements ICommand {
-
-	private HomeData homedata;
 
 	public DelHomeCommand(HomeData homedata) {
 		
@@ -52,7 +48,7 @@ public class DelHomeCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		
-		if(sender instanceof EntityPlayer) {
+		if(sender instanceof Entityplayer) {
 			
 			EntityPlayer player = (EntityPlayer) sender;
 			
@@ -80,12 +76,10 @@ public class DelHomeCommand implements ICommand {
 					sender.sendMessage(init);
 			 
 				}
-
+				
 				if(h.getHome_name() == homename) {
-
-				this.homedata.removeHome(this.homedata.getHome(homename));
-
-
+					
+					this.homedata.removeHome(homename);
 				}
 			}
 		}

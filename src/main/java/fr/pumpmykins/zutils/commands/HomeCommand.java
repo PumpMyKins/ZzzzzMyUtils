@@ -53,61 +53,63 @@ public class HomeCommand implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-		if(sender instanceof EntityPlayer) {
 
+		if(args.length > 0) {
+			
 			EntityPlayer player = (EntityPlayer) sender;
-		if (args.length > 0) {
-
-
-
-			for (Home h : this.homedata.getHomeByUsername(sender.getName())) {
-
-				args[0] = "home";
-
-				if (!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
-
+			
+			for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+				
+				h.getHome_name() = home;
+				
+				if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
+					
 					player.changeDimension(h.getWorld());
 				}
-				if(h.getHome_name() == args[0]) {
+				BlockPos pos = h.getPos();
+				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+			}
+			
+			
+					
+					
 					BlockPos pos = h.getPos();
 					player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+				
+		
+	
+			
+		}else if(args[0] == "list") {
+				
+				ITextComponent init = new TextComponentString("Liste de vos homes :");
+				init.setStyle(PmkStyleTable.orangeBold());
+				sender.sendMessage(init);
+				
+				for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+					
+					ITextComponent hm = new TextComponentString(h.getHome_name()+", Dimension :"+h.getWorld());
+					hm.setStyle(PmkStyleTable.itemList());
+					sender.sendMessage(hm);
 				}
-
-
-
-			}
-		} else if (args[0] == "list") {
-
-			ITextComponent init = new TextComponentString("Liste de vos homes :");
-			init.setStyle(PmkStyleTable.orangeBold());
-			sender.sendMessage(init);
-
-			for (Home h : this.homedata.getHomeByUsername(sender.getName())) {
-
-				ITextComponent hm = new TextComponentString(h.getHome_name() + ", Dimension :" + h.getWorld());
-				hm.setStyle(PmkStyleTable.itemList());
-				sender.sendMessage(hm);
-			}
-		} else {
-			for (Home h : this.homedata.getHomeByUsername(sender.getName())) {
-
-				if (h.getHome_name() == args[0]) {
-
-					if (!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
-
-						player.changeDimension(h.getWorld());
+			} else {
+				for(Home h : this.homedata.getHomeByUsername(sender.getName())) {
+					
+					if(h.getHome_name() == args[0]) {
+						
+						if(!(h.getWorld() == player.getEntityWorld().provider.getDimension())) {
+							
+							player.changeDimension(h.getWorld());
+						}
+						BlockPos pos = h.getPos();
+						player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+						
+						break;
 					}
-					BlockPos pos = h.getPos();
-					player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-
-
+					
+					
 				}
-
-				break;
+				
 			}
-
-		}
-	}
 	}
 	
 

@@ -52,27 +52,23 @@ public class TpaCommand implements ICommand {
 					receiver = w.getPlayerEntityByName(args[0]);
 					
 					
-					if(receiver != null)
+					if(receiver == null) {
 						
-						break;
+						
+						ITextComponent init = new TextComponentString("joueur inconnue");
+	    				init.setStyle(PmkStyleTable.orangeBold());
+	    				sender.sendMessage(init);
+						
+	    				break;
 					
-					else
+					}else {
 						
-						continue;
-                }
+						
+						
+						
+					}
 				
-                if(receiver == null) {
-                	
-                	ITextComponent init = new TextComponentString("joueur inconnue");
-    				init.setStyle(PmkStyleTable.orangeBold());
-    				sender.sendMessage(init);
-                }
-                
-                else {
-                	
-                	
-                	
-                }
+               
 				
 			}
 				
