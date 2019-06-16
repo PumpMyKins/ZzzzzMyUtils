@@ -2,6 +2,7 @@ package fr.pumpmykins.zutils.commands;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -9,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
-public class TpaacceptCommand implements ICommand {
+public class TpacceptCommand implements ICommand {
 
 	@Override
 	public int compareTo(ICommand o) {
@@ -32,23 +33,22 @@ public class TpaacceptCommand implements ICommand {
 	@Override
 	public List<String> getAliases() {
 		
-		return List.newArrayList("tpyes");
+		return Lists.newArrayList("tpyes");
 	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		
-		if(sender instanceof EntityPlayer){
-			
+		if(sender instanceof EntityPlayer) {
+
 			EntityPlayer player = (EntityPlayer) sender;
 
-			if(args.length > 0) {
-				
-		}
-		
-		
-		
+			if (args.length > 0) {
 
+			}
+
+
+		}
 	}
 
 	@Override
