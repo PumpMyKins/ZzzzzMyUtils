@@ -3,6 +3,7 @@ package fr.pumpmykins.zutils.commands;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import fr.pumpmykins.zutils.utils.tpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -43,7 +44,13 @@ public class TpacceptCommand implements ICommand {
 
 			EntityPlayer player = (EntityPlayer) sender;
 
-			if (args.length > 0) {
+			if (args.length == 0) {
+
+                if(tpRequest.getRequest == true){
+
+
+
+                }
 
 			}
 

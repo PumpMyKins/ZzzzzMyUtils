@@ -11,7 +11,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class TpaCommand implements ICommand {
 
@@ -66,7 +68,18 @@ public class TpaCommand implements ICommand {
 					} else {
 
 
+                        ITextComponent init = new TextComponentString(receiver + "souhaite se teleporter à vous ( accepter / refuser )");
+                        init.setStyle(PmkStyleTable.orangeBold());
+                        receiver.sendMessage(init);
 
+
+                        ITextComponent tpa = new TextComponentString("accepter");
+                        tpa.setStyle(PmkStyleTable.rougeBold());
+                        tpa.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpaccept" ));
+
+                        ITextComponent tpaD = new TextComponentString("refuser");
+                        tpaD.setStyle(PmkStyleTable.rougeBold());
+                        tpaD.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpdeny" ));
 
 					}
 

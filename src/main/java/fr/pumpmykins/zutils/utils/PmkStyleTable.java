@@ -29,6 +29,15 @@ public class PmkStyleTable {
 		
 		return s;
 	}
+
+	public static  Style rougeBold(){
+
+	    Style s = new Style();
+	    s.setBold(true);
+	    s.setColor(TextFormatting.RED);
+
+	    return s;
+    }
 	
 	public static Style itemList() {
 		
