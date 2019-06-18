@@ -3,6 +3,7 @@ package fr.pumpmykins.zutils.commands;
 import java.util.List;
 
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
+import fr.pumpmykins.zutils.utils.tpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -48,6 +49,7 @@ public class TpaCommand implements ICommand {
 
 			EntityPlayer player = (EntityPlayer) sender;
 			EntityPlayer receiver = null;
+			String PlayerP = args[0];
 
 			if (args.length > 0) {
 
@@ -81,6 +83,12 @@ public class TpaCommand implements ICommand {
                         tpaD.setStyle(PmkStyleTable.rougeBold());
                         tpaD.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpdeny" ));
 
+
+                        if(tpRequest.getRequest(){
+
+
+
+                        }
 					}
 
 

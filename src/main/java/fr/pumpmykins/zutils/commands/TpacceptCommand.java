@@ -43,20 +43,25 @@ public class TpacceptCommand implements ICommand {
 		if(sender instanceof EntityPlayer) {
 
 			EntityPlayer player = (EntityPlayer) sender;
+			boolean requestP = tpRequest.getRequest(false);
 
-			if (args.length == 0) {
+            if (args.length == 0) {
 
-                if(tpRequest.getRequest == true){
+                requestP = true;
+
+                if (requestP == true){
 
 
 
                 }
 
-			}
-
+            }
 
 		}
+
+
 	}
+
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
