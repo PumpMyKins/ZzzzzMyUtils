@@ -3,7 +3,7 @@ package fr.pumpmykins.zutils.commands;
 import java.util.List;
 
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
-import fr.pumpmykins.zutils.utils.tpRequest;
+import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -14,7 +14,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class TpaCommand implements ICommand {
 
@@ -84,8 +83,19 @@ public class TpaCommand implements ICommand {
                         tpaD.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpdeny" ));
 
 
-                        if(tpRequest.getRequest(){
+                        TpRequest requestP = new TpRequest();
+                        if(requestP.getPrequest() == true){
 
+                            requestP.setP(receiver.getPosition());
+
+                            BlockPos po = requestP.getP();
+                            player.setPosition(po.getX(), po.getY(), po.getZ());
+
+                        }else{
+
+                            ITextComponent init2 = new TextComponentString(receiver + "à refuser la téléportation");
+                            init.setStyle(PmkStyleTable.orangeBold());
+                            player.sendMessage(init);
 
 
                         }

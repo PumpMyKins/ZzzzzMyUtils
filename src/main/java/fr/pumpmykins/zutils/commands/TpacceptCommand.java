@@ -3,13 +3,14 @@ package fr.pumpmykins.zutils.commands;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import fr.pumpmykins.zutils.utils.tpRequest;
+import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 
 public class TpacceptCommand implements ICommand {
 
@@ -43,18 +44,14 @@ public class TpacceptCommand implements ICommand {
 		if(sender instanceof EntityPlayer) {
 
 			EntityPlayer player = (EntityPlayer) sender;
-			boolean requestP = tpRequest.getRequest(false);
 
             if (args.length == 0) {
 
-                requestP = true;
+                TpRequest requestP = new TpRequest();
 
-                if (requestP == true){
+                requestP.setPrequest(true);
 
-
-
-                }
-
+				TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
             }
 
 		}
@@ -66,7 +63,7 @@ public class TpacceptCommand implements ICommand {
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		
-		return false;
+		return true;
 	}
 
 	@Override
