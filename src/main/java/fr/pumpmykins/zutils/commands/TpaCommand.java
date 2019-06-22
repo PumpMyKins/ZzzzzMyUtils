@@ -69,6 +69,11 @@ public class TpaCommand implements ICommand {
 					} else {
 
 
+                        TpRequest requestP = new TpRequest();
+
+                        requestP.setExpiration(System.currentTimeMillis());
+
+
                         ITextComponent init = new TextComponentString(receiver + "souhaite se teleporter à vous ( accepter / refuser )");
                         init.setStyle(PmkStyleTable.orangeBold());
                         receiver.sendMessage(init);
@@ -83,13 +88,29 @@ public class TpaCommand implements ICommand {
                         tpaD.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpdeny" ));
 
 
-                        TpRequest requestP = new TpRequest();
+
                         if(requestP.getPrequest() == true){
 
-                            requestP.setP(receiver.getPosition());
 
-                            BlockPos po = requestP.getP();
-                            player.setPosition(po.getX(), po.getY(), po.getZ());
+
+                            if(requestP.getExpiration() <= requestP.getExpiration() + 3*60*1000){
+
+
+                                ITextComponent init3 = new TextComponentString("La demande de teleportation à expiré");
+                                init.setStyle(PmkStyleTable.orangeBold());
+                                receiver.sendMessage(init);
+
+                                requestP.setPrequest(false);
+
+                            }else {
+
+                                requestP.setP(receiver.getPosition());
+
+                                BlockPos po = requestP.getP();
+                                player.setPosition(po.getX(), po.getY(), po.getZ());
+                            }
+
+
 
                         }else{
 
@@ -114,7 +135,7 @@ public class TpaCommand implements ICommand {
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
