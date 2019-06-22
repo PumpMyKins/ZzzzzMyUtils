@@ -1,12 +1,8 @@
 package fr.pumpmykins.zutils;
 
+import fr.pumpmykins.zutils.commands.*;
 import org.apache.logging.log4j.Logger;
 
-import fr.pumpmykins.zutils.commands.DelHomeCommand;
-import fr.pumpmykins.zutils.commands.HomeCommand;
-import fr.pumpmykins.zutils.commands.SetHomeCommand;
-import fr.pumpmykins.zutils.commands.TpaCommand;
-import fr.pumpmykins.zutils.commands.TpaHereCommand;
 import fr.pumpmykins.zutils.utils.HomeData;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
@@ -61,7 +57,6 @@ public class MainPmkUtils {
 		this.homedata = getHomeData(event.getServer().getWorld(0));
 		
 		event.registerServerCommand(new HomeCommand(this.homedata));
-		event.registerServerCommand(new SetSpawnCommand());
 		event.registerServerCommand(new DelHomeCommand(this.homedata));
 		event.registerServerCommand(new TpaCommand());
 		event.registerServerCommand(new TpaHereCommand());
