@@ -6,18 +6,23 @@ public class TpRequest {
 
     boolean request;
     BlockPos p;
+    long expiration;
+
 
     public TpRequest(){
 
         request = false;
         p = null;
+        expiration = 0;
 
     }
 
-    public TpRequest(boolean pRequest, BlockPos pReceiver){
+    public TpRequest(boolean pRequest, BlockPos pReceiver, long pExpiration){
 
         request = pRequest;
         p = pReceiver;
+        expiration = pExpiration;
+
     }
 
     public BlockPos getP(){
@@ -42,4 +47,17 @@ public class TpRequest {
         request = pRequest;
 
     }
+
+    public long getExpiration(){
+
+        return expiration;
+
+    }
+
+    public void setExpiration(long pExpiration){
+
+        expiration = pExpiration;
+    }
+
+
 }
