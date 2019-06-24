@@ -119,7 +119,7 @@ public class TpaHereCommand implements ICommand {
 						}
 					}
 
-
+                    break;
 				}
 
 

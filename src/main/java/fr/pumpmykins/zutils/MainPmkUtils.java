@@ -62,6 +62,7 @@ public class MainPmkUtils {
 		event.registerServerCommand(new TpaHereCommand());
 		event.registerServerCommand(new SetHomeCommand(this.homedata));
 		event.registerServerCommand(new TpacceptCommand());
+		event.registerServerCommand(new TpDenyCommand());
 	}
 	
 	@SubscribeEvent

@@ -72,7 +72,7 @@ public class HomeCommand implements ICommand {
 
 
 
-
+                break;
 			}
 			
 		}else if(args[0] == "list") {

@@ -337,6 +337,7 @@ public class SetHomeCommand implements ICommand {
                         h.setWorld(player.getEntityWorld().provider.getDimension());
 
                     }
+                    break;
                 }
 
 

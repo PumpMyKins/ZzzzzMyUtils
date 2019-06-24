@@ -122,7 +122,7 @@ public class TpaCommand implements ICommand {
                         }
 					}
 
-
+                    break;
 				}
 
 
@@ -134,20 +134,17 @@ public class TpaCommand implements ICommand {
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
 			BlockPos targetPos) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isUsernameIndex(String[] args, int index) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

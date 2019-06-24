@@ -1,5 +1,6 @@
 package fr.pumpmykins.zutils.commands;
 
+import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -7,11 +8,13 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class TpDenyCommand implements ICommand {
+
+
     @Override
     public String getName() {
         return "tpdeny";
@@ -39,6 +42,10 @@ public class TpDenyCommand implements ICommand {
                 TpRequest requestP = new TpRequest();
 
                 requestP.setPrequest(false);
+
+                TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
+                init.setStyle(PmkStyleTable.orangeBold());
+                sender.sendMessage(init);
 
             }
 

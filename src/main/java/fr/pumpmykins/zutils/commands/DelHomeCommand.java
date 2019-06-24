@@ -87,8 +87,9 @@ public class DelHomeCommand implements ICommand {
 
 					this.homedata.removeHome(this.homedata.getHome(homename));
 
-					
+
 				}
+				break;
 			}
 		}
 		

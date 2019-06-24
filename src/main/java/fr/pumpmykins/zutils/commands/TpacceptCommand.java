@@ -3,6 +3,7 @@ package fr.pumpmykins.zutils.commands;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -52,6 +53,8 @@ public class TpacceptCommand implements ICommand {
                 requestP.setPrequest(true);
 
 				TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
+				init.setStyle(PmkStyleTable.orangeBold());
+				sender.sendMessage(init);
             }
 
 		}
