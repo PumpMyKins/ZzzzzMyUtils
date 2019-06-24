@@ -53,7 +53,7 @@ public class TpacceptCommand implements ICommand {
                 requestP.setPrequest(true);
 
 				TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
-				init.setStyle(PmkStyleTable.orangeBold());
+				init.setStyle(PmkStyleTable.itemList());
 				sender.sendMessage(init);
             }
 
