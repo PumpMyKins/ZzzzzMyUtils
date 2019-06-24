@@ -71,9 +71,9 @@ public class TpaHereCommand implements ICommand {
 						requestP.setExpiration(System.currentTimeMillis());
 
 
-						ITextComponent init = new TextComponentString(receiver + "souhaite se teleporter à vous ( accepter / refuser )");
-						init.setStyle(PmkStyleTable.orangeBold());
-						receiver.sendMessage(init);
+						ITextComponent init1 = new TextComponentString(receiver + "souhaite se teleporter à vous ( accepter / refuser )");
+						init1.setStyle(PmkStyleTable.orangeBold());
+						receiver.sendMessage(init1);
 
 
 						ITextComponent tpa = new TextComponentString("accepter");
@@ -90,12 +90,12 @@ public class TpaHereCommand implements ICommand {
 
 
 
-							if(requestP.getExpiration() <= requestP.getExpiration() + 3*60*1000){
+							if(requestP.getExpiration() >= requestP.getExpiration() + 3*60*1000){
 
 
 								ITextComponent init3 = new TextComponentString("La demande de teleportation à expiré");
-								init.setStyle(PmkStyleTable.orangeBold());
-								receiver.sendMessage(init);
+								init3.setStyle(PmkStyleTable.orangeBold());
+								receiver.sendMessage(init3);
 
 								requestP.setPrequest(false);
 
@@ -112,8 +112,8 @@ public class TpaHereCommand implements ICommand {
 						}else{
 
 							ITextComponent init2 = new TextComponentString(receiver + "à refuser la téléportation");
-							init.setStyle(PmkStyleTable.orangeBold());
-							player.sendMessage(init);
+							init2.setStyle(PmkStyleTable.orangeBold());
+							player.sendMessage(init2);
 
 
 						}
