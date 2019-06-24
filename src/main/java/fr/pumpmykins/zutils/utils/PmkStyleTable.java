@@ -39,7 +39,7 @@ public class PmkStyleTable {
 	    return s;
     }
 	
-	public static Style itemList() {
+	public static Style italicBlue() {
 		
 		Style s = new Style();
 		s.setItalic(true);
@@ -48,7 +48,7 @@ public class PmkStyleTable {
 		return s;
 	}
 	
-	public static Style itemNumber() {
+	public static Style boldDarkRed() {
 		
 		Style s = new Style();
 		s.setBold(true);

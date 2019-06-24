@@ -1,6 +1,13 @@
 package fr.pumpmykins.zutils;
 
-import fr.pumpmykins.zutils.commands.*;
+import fr.pumpmykins.zutils.commands.tp.DelHomeCommand;
+import fr.pumpmykins.zutils.commands.tp.HomeCommand;
+import fr.pumpmykins.zutils.commands.tp.SetHomeCommand;
+import fr.pumpmykins.zutils.commands.tp.TpDenyCommand;
+import fr.pumpmykins.zutils.commands.tp.TpaCommand;
+import fr.pumpmykins.zutils.commands.tp.TpaHereCommand;
+import fr.pumpmykins.zutils.commands.tp.TpacceptCommand;
+
 import org.apache.logging.log4j.Logger;
 
 import fr.pumpmykins.zutils.utils.HomeData;
@@ -79,20 +86,48 @@ public class MainPmkUtils {
 		
 		@Comment("Config for the ZzzzzMyUtils Mod")
 		
-		public static HomeSub homecat = new HomeSub();
-		private static class HomeSub {
-			public boolean active=true; 
-			public int quantity=2;
+		public static ModuleHome homecat = new ModuleHome();
+		
+		public static ModuleSpawn spawncat = new ModuleSpawn();
+		
+		public static ModuleTpa tpacat = new ModuleTpa();
+		
+		private static class ModuleHome {
+			
+			@Config.Name("Activer le Module Home :")
+			public boolean active=true;
+			
+			@Config.RangeInt(min = 0, max = 20)
+			private int HomeTier0 = 2;
+			
+			@Config.RangeInt(min = 0, max = 20)
+			private int HomeTier1 = 4;
+
+			@Config.RangeInt(min = 0, max = 20)
+			private int HomeTier2 = 6;
+
+			@Config.RangeInt(min = 0, max = 20)
+			private int HomeTier3 = 10;
+			
 		}
 		
-		public static SpawnSub spawncat = new SpawnSub();
-		private static class SpawnSub {
+		private static class ModuleSpawn {
+			
+			@Config.Name("Activer le Module Spawn :")
 			public boolean active=true; 
+			
+			public int z = 0;
+			public int y = 0;
+			public int x = 0;
+				
+			public int dim = 0;
+			
 		}
 		
-		public static TpaSub tpacat = new TpaSub();
-		private static class TpaSub {
-			public boolean active=true; 
+		private static class ModuleTpa {
+			
+			public boolean active=true;
+			
 		}
 		
 	}

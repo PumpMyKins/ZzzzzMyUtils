@@ -1,4 +1,4 @@
-package fr.pumpmykins.zutils.commands;
+package fr.pumpmykins.zutils.commands.tp;
 
 import java.util.List;
 

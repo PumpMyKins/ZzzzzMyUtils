@@ -1,4 +1,4 @@
-package fr.pumpmykins.zutils.commands;
+package fr.pumpmykins.zutils.commands.tp;
 
 import java.util.List;
 
@@ -64,32 +64,48 @@ public class DelHomeCommand implements ICommand {
 			if(args.length > 0) {
 
 				homename = args[0];
-				
 			} else {
 					
 				homename = "home";
-					
 			}
 			
+			boolean done = false;
 			
 			for(Home h : this.homedata.getHomeByUsername(player.getName())) {
 			
-				if(h.getHome_name() != homename) {
-					
-					
-					ITextComponent init = new TextComponentString("se home n'existe pas");
-					init.setStyle(PmkStyleTable.orangeBold());
-					sender.sendMessage(init);
-			 
-				}
-				
 				if(h.getHome_name() == homename) {
 
 					this.homedata.removeHome(this.homedata.getHome(homename));
 
-
+					done = true;
+					
+					break;
 				}
-				break;
+			}
+			if(done) {
+				
+				ITextComponent hm = new TextComponentString("Votre home : ");
+				hm.setStyle(PmkStyleTable.italicBlue());
+				ITextComponent hm2 = new TextComponentString(homename);
+				hm2.setStyle(PmkStyleTable.boldDarkRed());
+				ITextComponent hm3 = new TextComponentString(" à été supprimé avec succès !");
+				hm3.setStyle(PmkStyleTable.italicBlue());
+				hm.appendSibling(hm2);
+				hm.appendSibling(hm3);
+				sender.sendMessage(hm);
+				
+			} else {
+				
+				ITextComponent hm = new TextComponentString("Le home : ");
+				hm.setStyle(PmkStyleTable.italicBlue());
+				ITextComponent hm2 = new TextComponentString(homename);
+				hm2.setStyle(PmkStyleTable.boldDarkRed());
+				ITextComponent hm3 = new TextComponentString(" n'existe pas !");
+				hm3.setStyle(PmkStyleTable.italicBlue());
+				hm.appendSibling(hm2);
+				hm.appendSibling(hm3);
+				sender.sendMessage(hm);
+				
 			}
 		}
 		

@@ -1,4 +1,4 @@
-package fr.pumpmykins.zutils.commands;
+package fr.pumpmykins.zutils.commands.tp;
 
 import java.util.List;
 
@@ -51,20 +51,6 @@ public class SetHomeCommand implements ICommand {
 		return null;
 	}
 	
-	@Config.RangeInt(min = 0, max = 5)
-	private static int getMaxHomeT1 = 0;
-
-	@Config.RangeInt(min = 0, max = 7)
-	private static int getMaxHomeT2 = 0;
-
-	@Config.RangeInt(min = 0, max = 8)
-	private static int getMaxHomeT3 = 0;
-
-	@Config.RangeInt(min = 0, max = 4)
-	private static int getMaxHomeT0 = 0;
-	
-	
-
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
@@ -347,22 +333,6 @@ public class SetHomeCommand implements ICommand {
         }
 
     }
-
-
-
-			
-			
-
-
-
-
-			
-
-			
-				
-
-			
-
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
