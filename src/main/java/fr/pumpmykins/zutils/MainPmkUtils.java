@@ -82,7 +82,7 @@ public class MainPmkUtils {
 	
 	@SuppressWarnings("unused")
 	@Config(modid = MODID)
-	public static class ModConfig{
+	public static class ModConfig {
 		
 		@Comment("Config for the ZzzzzMyUtils Mod")
 		
@@ -92,22 +92,22 @@ public class MainPmkUtils {
 		
 		public static ModuleTpa tpacat = new ModuleTpa();
 		
-		private static class ModuleHome {
+		public static class ModuleHome {
 			
 			@Config.Name("Activer le Module Home :")
 			public boolean active=true;
 			
 			@Config.RangeInt(min = 0, max = 20)
-			private int HomeTier0 = 2;
+			public int homeTier0 = 2;
 			
 			@Config.RangeInt(min = 0, max = 20)
-			private int HomeTier1 = 4;
+			public int homeTier1 = 4;
 
 			@Config.RangeInt(min = 0, max = 20)
-			private int HomeTier2 = 6;
+			public int homeTier2 = 6;
 
 			@Config.RangeInt(min = 0, max = 20)
-			private int HomeTier3 = 10;
+			public int homeTier3 = 10;
 			
 		}
 		

@@ -44,7 +44,7 @@ public class TpDenyCommand implements ICommand {
                 requestP.setPrequest(false);
 
                 TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
-                init.setStyle(PmkStyleTable.itemList());
+                init.setStyle(PmkStyleTable.italicBlue());
                 sender.sendMessage(init);
 
             }

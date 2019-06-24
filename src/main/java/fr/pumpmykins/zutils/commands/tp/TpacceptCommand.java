@@ -44,8 +44,6 @@ public class TpacceptCommand implements ICommand {
 		
 		if(sender instanceof EntityPlayer) {
 
-			EntityPlayer player = (EntityPlayer) sender;
-
             if (args.length == 0) {
 
                 TpRequest requestP = new TpRequest();
@@ -53,7 +51,7 @@ public class TpacceptCommand implements ICommand {
                 requestP.setPrequest(true);
 
 				TextComponentString init = new TextComponentString("Vous avez accepté la téléportation");
-				init.setStyle(PmkStyleTable.itemList());
+				init.setStyle(PmkStyleTable.italicBlue());
 				sender.sendMessage(init);
             }
 

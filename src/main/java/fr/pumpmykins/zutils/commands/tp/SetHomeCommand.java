@@ -2,6 +2,7 @@ package fr.pumpmykins.zutils.commands.tp;
 
 import java.util.List;
 
+import fr.pumpmykins.zutils.MainPmkUtils.ModConfig;
 import fr.pumpmykins.zutils.utils.Home;
 import fr.pumpmykins.zutils.utils.HomeData;
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
@@ -10,17 +11,15 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.common.config.Config;
 import net.minecraftforge.server.permission.PermissionAPI;
 
 public class SetHomeCommand implements ICommand {
 
 	private HomeData homedata;
-	
+
 	public SetHomeCommand(HomeData homedata) {
 
 		this.homedata = homedata;
@@ -50,295 +49,113 @@ public class SetHomeCommand implements ICommand {
 
 		return null;
 	}
-	
+
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-        if (sender instanceof EntityPlayer) {
-
-            EntityPlayer player = (EntityPlayer) sender;
-
-            int check1 = getMaxHomeT1;
-            int check2 = getMaxHomeT2;
-            int check3 = getMaxHomeT3;
-            int check4 = getMaxHomeT0;
-
-            String homename = "";
-            boolean toset = false;
-
-            if (args.length == 0) {
-
-                homename = "home";
-
-            } else {
-
-                homename = args[0];
-
-            }
-
-            if (PermissionAPI.hasPermission(player, "rank.tier1")) {
-
-
-                for (Home h : this.homedata.getHomeByUsername(player.getName())) {
-
-
-                    if (5 >= check1) {
-
-
-                        if (check1 == 5) {
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-
-                        } else if (h.getHome_name() == homename) {
-
-
-                            toset = false;
-
-                            h.setPos(player.getPosition());
-                            h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                        } else {
-
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-                        }
-
-
-                    } else {
-
-                        toset = true;
-                    }
-                    break;
-                }
-            }
-
-            if (PermissionAPI.hasPermission(player, "rank.tier2")) {
-
-
-                for (Home h : this.homedata.getHomeByUsername(player.getName())) {
-
-
-                    if (7 >= check2) {
-
-
-                        if (check2 == 7) {
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-
-                        } else if (h.getHome_name() == homename) {
-
-
-                            toset = false;
-
-                            h.setPos(player.getPosition());
-                            h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                        } else {
-
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-                        }
-
-
-                    } else {
-
-                        toset = true;
-                    }
-                    break;
-                }
-
-
-            }
-
-            if (PermissionAPI.hasPermission(player, "rank.tier3")) {
-
-
-                for (Home h : this.homedata.getHomeByUsername(player.getName())) {
-
-
-                    if (5 >= check3) {
-
-
-                        if(check3 == 8){
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-
-                        } else if (h.getHome_name() == homename) {
-
-
-                            toset = false;
-
-                            h.setPos(player.getPosition());
-                            h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                        } else {
-
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-                        }
-
-
-                    } else {
-
-                        toset = true;
-                    }
-                    break;
-                }
-
-
-            }
-
-
-
-                for (Home h : this.homedata.getHomeByUsername(player.getName())) {
-
-
-                    if (4 >= check4) {
-
-
-                        if (check4 == 4) {
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-
-                        } else if (h.getHome_name() == homename) {
-
-
-                            toset = false;
-
-                            h.setPos(player.getPosition());
-                            h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                        } else {
-
-
-                            ITextComponent init = new TextComponentString("Vous ne pouvez pas faire plus de home");
-                            init.setStyle(PmkStyleTable.orangeBold());
-                            sender.sendMessage(init);
-                        }
-
-
-                    } else {
-
-                        toset = true;
-                    }
-                    break;
-                }
-
-
-
-
-
-            if (!toset) {
-                for (Home h : this.homedata.getHomeByUsername(player.getName())) {
-
-
-                    check1 = getMaxHomeT1 + 1;
-                    check2 = getMaxHomeT2 + 1;
-                    check3 = getMaxHomeT3 + 1;
-                    check4 = getMaxHomeT0 + 1;
-
-
-                    if ((PermissionAPI.hasPermission(player, "rank.tier1")) && (getMaxHomeT1 != 5)) {
-
-
-                        // Set other properties
-                        this.homedata.addHome(h);
-
-                        h.setPos(player.getPosition());
-                        h.setHome_name(homename);
-                        h.setHome_name(homename);
-                        h.setUsername(player.getName());
-                        h.setOwner(player.getUniqueID());
-                        h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                    }
-
-
-                    if ((PermissionAPI.hasPermission(player, "rank.tier2")) && (getMaxHomeT2 != 7)) {
-
-
-                        // Set other properties
-                        this.homedata.addHome(h);
-
-                        h.setPos(player.getPosition());
-                        h.setHome_name(homename);
-                        h.setUsername(player.getName());
-                        h.setOwner(player.getUniqueID());
-                        h.setWorld(player.getEntityWorld().provider.getDimension());
-
-
-                    }
-
-
-                    if ((PermissionAPI.hasPermission(player, "rank.tier3")) && (getMaxHomeT2 != 8)) {
-
-
-                        // Set other properties
-                        this.homedata.addHome(h);
-
-                        h.setPos(player.getPosition());
-                        h.setHome_name(homename);
-                        h.setUsername(player.getName());
-                        h.setOwner(player.getUniqueID());
-                        h.setWorld(player.getEntityWorld().provider.getDimension());
-
-
-                    }
-
-
-                    if (getMaxHomeT2 != 4) {
-
-
-                        this.homedata.addHome(h);
-
-
-                        h.setPos(player.getPosition());
-                        h.setHome_name(homename);
-                        h.setUsername(player.getName());
-                        h.setOwner(player.getUniqueID());
-                        h.setWorld(player.getEntityWorld().provider.getDimension());
-
-
-                        // Set other properties
-                        this.homedata.addHome(h);
-
-                        h.setPos(player.getPosition());
-                        h.setHome_name(homename);
-                        h.setUsername(player.getName());
-                        h.setOwner(player.getUniqueID());
-                        h.setWorld(player.getEntityWorld().provider.getDimension());
-
-                    }
-                    break;
-                }
-
-
-            }
-
-
-        }
-
-    }
+		if (sender instanceof EntityPlayer) {
+
+			EntityPlayer player = (EntityPlayer) sender;
+
+			String homename = "";
+			boolean toset = true;
+
+			if (args.length == 0) {
+
+				homename = "home";
+			} else {
+
+				homename = args[0];
+			}
+
+			int homelimite = ModConfig.homecat.homeTier0;
+
+			if(PermissionAPI.hasPermission(player, "rank.tier1")) {
+
+				homelimite = ModConfig.homecat.homeTier1;
+
+			} else if(PermissionAPI.hasPermission(player, "rank.tier2")) {
+
+				homelimite = ModConfig.homecat.homeTier2;
+
+			} else if(PermissionAPI.hasPermission(player, "rank.tier3")) {
+
+				homelimite = ModConfig.homecat.homeTier3;
+
+			}
+
+			for (Home h : this.homedata.getHomeByUsername(player.getName())) {
+
+				if(h.getHome_name().equalsIgnoreCase(homename)) {
+
+					this.homedata.removeHome(h);
+
+					h.setWorld(player.getEntityWorld().provider.getDimension());
+					h.setPos(player.getPosition());
+
+					toset = false;
+
+					this.homedata.addHome(h);
+					
+					ITextComponent hm = new TextComponentString("Votre home : ");
+					hm.setStyle(PmkStyleTable.italicBlue());
+					ITextComponent hm2 = new TextComponentString(homename);
+					hm2.setStyle(PmkStyleTable.boldDarkRed());
+					ITextComponent hm3 = new TextComponentString(" à été remplacé avec succès !");
+					hm3.setStyle(PmkStyleTable.italicBlue());
+					hm.appendSibling(hm2);
+					hm.appendSibling(hm3);
+					sender.sendMessage(hm);
+					
+					break;
+				}
+			}
+			if(toset) {
+
+				int homesize = this.homedata.getHomeByUsername(player.getName()).size();
+				if(!(homesize >= homelimite)) {
+
+					Home h = new Home();
+					h.setHome_name(homename);
+					h.setOwner(player.getUniqueID());
+					h.setPos(player.getPosition());
+					h.setWorld(player.getEntityWorld().provider.getDimension());
+					h.setUsername(player.getName());
+
+					ITextComponent hm = new TextComponentString("Le home : ");
+					hm.setStyle(PmkStyleTable.italicBlue());
+					ITextComponent hm2 = new TextComponentString(homename);
+					hm2.setStyle(PmkStyleTable.boldDarkRed());
+					ITextComponent hm3 = new TextComponentString(" à été mis avec succès !");
+					hm3.setStyle(PmkStyleTable.italicBlue());
+					hm.appendSibling(hm2);
+					hm.appendSibling(hm3);
+					sender.sendMessage(hm);
+					
+					this.homedata.addHome(h);
+				} else {
+					
+					ITextComponent hm = new TextComponentString("Vous avez déjà : ");
+					hm.setStyle(PmkStyleTable.italicBlue());
+					ITextComponent hm2 = new TextComponentString(Integer.toString(homesize));
+					hm2.setStyle(PmkStyleTable.boldDarkRed());
+					ITextComponent hm3 = new TextComponentString(" home ce qui est votre limite !");
+					hm3.setStyle(PmkStyleTable.italicBlue());
+					hm.appendSibling(hm2);
+					hm.appendSibling(hm3);
+					sender.sendMessage(hm);
+				}
+			}
+
+		}
+
+	}
 
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 
-        return true;
-    }
+		return true;
+	}
 
 
 
