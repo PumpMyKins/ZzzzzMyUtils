@@ -56,4 +56,13 @@ public class PmkStyleTable {
 		
 		return s;
 	}
+	
+	public static Style boldDardGreen() {
+		
+		Style s = new Style();
+		s.setBold(true);
+		s.setColor(TextFormatting.DARK_GREEN);
+		
+		return s;
+	} 
 }

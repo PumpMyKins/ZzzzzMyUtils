@@ -6,11 +6,16 @@ import fr.pumpmykins.zutils.commands.tp.SetHomeCommand;
 import fr.pumpmykins.zutils.commands.tp.TpDenyCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaHereCommand;
-import fr.pumpmykins.zutils.commands.tp.TpacceptCommand;
+import fr.pumpmykins.zutils.commands.tp.TpaListCommand;
+import fr.pumpmykins.zutils.commands.tp.TpAcceptCommand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
 import fr.pumpmykins.zutils.utils.HomeData;
+import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraftforge.common.config.Config;
@@ -43,6 +48,8 @@ public class MainPmkUtils {
 	
 	private HomeData homedata;
 	
+	private List<TpRequest> tprequest;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		
@@ -61,15 +68,19 @@ public class MainPmkUtils {
 	@EventHandler
 	public void onServerStarting(FMLServerStartingEvent event) {
 		
+		this.tprequest = new ArrayList<TpRequest>();
+		
 		this.homedata = getHomeData(event.getServer().getWorld(0));
 		
 		event.registerServerCommand(new HomeCommand(this.homedata));
 		event.registerServerCommand(new DelHomeCommand(this.homedata));
-		event.registerServerCommand(new TpaCommand());
-		event.registerServerCommand(new TpaHereCommand());
 		event.registerServerCommand(new SetHomeCommand(this.homedata));
-		event.registerServerCommand(new TpacceptCommand());
-		event.registerServerCommand(new TpDenyCommand());
+		
+		event.registerServerCommand(new TpAcceptCommand(this.tprequest));
+		event.registerServerCommand(new TpDenyCommand(this.tprequest));
+		event.registerServerCommand(new TpaCommand(this.tprequest));
+		event.registerServerCommand(new TpaHereCommand(this.tprequest));
+		event.registerServerCommand(new TpaListCommand(this.tprequest));
 	}
 	
 	@SubscribeEvent

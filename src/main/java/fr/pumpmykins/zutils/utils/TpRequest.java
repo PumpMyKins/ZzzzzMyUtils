@@ -1,63 +1,52 @@
 package fr.pumpmykins.zutils.utils;
 
-import net.minecraft.util.math.BlockPos;
+import java.util.Date;
+
+import net.minecraft.entity.player.EntityPlayer;
 
 public class TpRequest {
 
-    boolean request;
-    BlockPos p;
-    long expiration;
+	private boolean here;
+	private EntityPlayer sender;
+	private EntityPlayer receiver;
+	private Date date;
 
 
-    public TpRequest(){
+	public TpRequest() {
 
-        request = false;
-        p = null;
-        expiration = 0;
+		this.date = new Date();
+	}
 
-    }
+	public boolean isHere() {
+		return here;
+	}
 
-    public TpRequest(boolean pRequest, BlockPos pReceiver, long pExpiration){
+	public void setHere(boolean here) {
+		this.here = here;
+	}
 
-        request = pRequest;
-        p = pReceiver;
-        expiration = pExpiration;
+	public EntityPlayer getSender() {
+		return sender;
+	}
 
-    }
+	public void setSender(EntityPlayer sender) {
+		this.sender = sender;
+	}
 
-    public BlockPos getP(){
+	public EntityPlayer getReceiver() {
+		return receiver;
+	}
 
-        return  p;
-    }
+	public void setReceiver(EntityPlayer receiver) {
+		this.receiver = receiver;
+	}
 
-    public void setP(BlockPos pReceiver){
+	public Date getDate() {
+		return date;
+	}
 
-        p = pReceiver;
-    }
-
-
-    public boolean getPrequest(){
-
-        return request;
-
-    }
-
-    public void setPrequest(boolean pRequest){
-
-        request = pRequest;
-
-    }
-
-    public long getExpiration(){
-
-        return expiration;
-
-    }
-
-    public void setExpiration(long pExpiration){
-
-        expiration = pExpiration;
-    }
-
-
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 }

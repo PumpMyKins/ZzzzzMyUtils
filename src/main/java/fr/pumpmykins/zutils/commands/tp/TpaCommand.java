@@ -12,10 +12,15 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.world.World;
 
 public class TpaCommand implements ICommand {
+
+	private List<TpRequest> tprequest;
+
+	public TpaCommand(List<TpRequest> tprequest) {
+
+		this.tprequest = tprequest;
+	}
 
 	@Override
 	public int compareTo(ICommand o) {
@@ -25,19 +30,19 @@ public class TpaCommand implements ICommand {
 
 	@Override
 	public String getName() {
-		
+
 		return "tpa";
 	}
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		
+
 		return null;
 	}
 
 	@Override
 	public List<String> getAliases() {
-		
+
 		return null;
 	}
 
@@ -46,90 +51,37 @@ public class TpaCommand implements ICommand {
 
 		if (sender instanceof EntityPlayer) {
 
-			EntityPlayer player = (EntityPlayer) sender;
-			EntityPlayer receiver = null;
-			String PlayerP = args[0];
+			if(args.length > 0) {
 
-			if (args.length == 1) {
+				EntityPlayer player = (EntityPlayer) sender;
 
-				for (World w : server.worlds) {
+				EntityPlayer receiver = server.getPlayerList().getPlayerByUsername(args[0]);
 
-					receiver = w.getPlayerEntityByName(args[0]);
+				if(receiver != null) {
 
+					TpRequest tr = new TpRequest();
+					tr.setHere(false);
+					tr.setSender(player);
+					tr.setReceiver(receiver);
 
-					if (receiver == null) {
+					this.tprequest.add(tr);
 
+					//TODO message clickable
+					ITextComponent init1 = new TextComponentString(receiver + "souhaite se teleporter a�vous ( accepter / refuser )");
+					init1.setStyle(PmkStyleTable.orangeBold());
+					receiver.sendMessage(init1);
 
-						ITextComponent init = new TextComponentString("joueur inconnue");
-						init.setStyle(PmkStyleTable.orangeBold());
-						sender.sendMessage(init);
+				} else {
 
-						break;
+					//TODO message 
+					ITextComponent init = new TextComponentString("joueur inconnue");
+					init.setStyle(PmkStyleTable.orangeBold());
+					sender.sendMessage(init);
 
-					} else {
-
-
-                        TpRequest requestP = new TpRequest();
-
-                        requestP.setExpiration(System.currentTimeMillis());
-
-
-                        ITextComponent init1 = new TextComponentString(receiver + "souhaite se teleporter à vous ( accepter / refuser )");
-                        init1.setStyle(PmkStyleTable.orangeBold());
-                        receiver.sendMessage(init1);
-
-
-                        ITextComponent tpa = new TextComponentString("accepter");
-                        tpa.setStyle(PmkStyleTable.rougeBold());
-                        tpa.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpaccept" ));
-
-                        ITextComponent tpaD = new TextComponentString("refuser");
-                        tpaD.setStyle(PmkStyleTable.rougeBold());
-                        tpaD.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpdeny" ));
-
-
-
-                        if(requestP.getPrequest() == true){
-
-
-
-                            if(requestP.getExpiration() >= requestP.getExpiration() + 3*60*1000){
-
-
-                                ITextComponent init3 = new TextComponentString("La demande de teleportation à expiré");
-                                init3.setStyle(PmkStyleTable.orangeBold());
-                                receiver.sendMessage(init3);
-
-                                requestP.setPrequest(false);
-
-                            }else {
-
-                                requestP.setP(receiver.getPosition());
-
-                                BlockPos po = requestP.getP();
-                                player.setPosition(po.getX(), po.getY(), po.getZ());
-                            }
-
-
-
-                        }else{
-
-                            ITextComponent init2 = new TextComponentString(receiver + "à refuser la téléportation");
-                            init2.setStyle(PmkStyleTable.orangeBold());
-                            player.sendMessage(init2);
-
-
-                        }
-					}
-
-                    break;
 				}
-
-
 			}
-
-
 		}
+
 	}
 
 	@Override
