@@ -13,6 +13,7 @@ import fr.pumpmykins.zutils.commands.tp.TpDenyCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaHereCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaListCommand;
+import fr.pumpmykins.zutils.event.TpaEventHandler;
 import fr.pumpmykins.zutils.commands.tp.TpAcceptCommand;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.ConfigManager;
@@ -96,6 +98,8 @@ public class MainPmkUtils {
 			event.registerServerCommand(new TpaCommand(this.tprequest));
 			event.registerServerCommand(new TpaHereCommand(this.tprequest));
 			event.registerServerCommand(new TpaListCommand(this.tprequest));
+			
+			MinecraftForge.EVENT_BUS.register(new TpaEventHandler(this.tprequest));
 		}
 		if(ModConfig.spawncat.active) {
 			
