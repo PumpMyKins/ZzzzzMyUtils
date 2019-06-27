@@ -38,7 +38,7 @@ public class SetSpawnCommand implements ICommand {
 	@Override
 	public List<String> getAliases() {
 		
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

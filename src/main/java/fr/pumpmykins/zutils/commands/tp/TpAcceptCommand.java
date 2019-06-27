@@ -13,6 +13,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -42,7 +43,7 @@ public class TpAcceptCommand implements ICommand {
 	@Override
 	public String getUsage(ICommandSender sender) {
 
-		return null;
+		return "Syntax : /tpyes <name> | /tpaccept <name>";
 	}
 
 	@Override
@@ -178,7 +179,7 @@ public class TpAcceptCommand implements ICommand {
 
 					if(args[0].equals(tp.getSender().getName())) {
 
-						EntityPlayer tpreceiver = tp.getReceiver();
+						EntityPlayerMP tpreceiver = (EntityPlayerMP) tp.getReceiver();
 						EntityPlayer tpsender = tp.getSender();
 						
 						if(tp.getReceiver().isEntityAlive() && tp.getSender().isEntityAlive()) {
@@ -189,9 +190,16 @@ public class TpAcceptCommand implements ICommand {
 								int dim = tpsender.getEntityWorld().provider.getDimension();
 								BlockPos pos = tpsender.getPosition();
 
-								tpreceiver.changeDimension(dim);
-								tpreceiver.setPosition(pos.getX(), pos.getY(), pos.getZ());
-
+								if(tpreceiver.dimension != dim) {
+									tpreceiver.changeDimension(dim);
+								}
+								//tpreceiver.setPosition(pos.getX(), pos.getY(), pos.getZ());
+								tpreceiver.connection.setPlayerLocation(pos.getX(), pos.getY(), pos.getZ(), tpreceiver.getRotationYawHead(), tpreceiver.rotationPitch);
+								
+								
+								//TODO Personnal teleporter to make home work between dimension !
+								//TODO Implement ITeleporter somewhere and let this handle the teleportation between dimension !
+								
 								this.tprequest.remove(0);
 
 								ITextComponent hm = new TextComponentString("Vous avez été tp à");
@@ -215,7 +223,17 @@ public class TpAcceptCommand implements ICommand {
 								int dim = tpreceiver.getEntityWorld().provider.getDimension();
 								BlockPos pos = tpreceiver.getPosition();
 
-								tpsender.changeDimension(dim);
+								if(tpsender.dimension != dim) {
+									tpsender.changeDimension(dim);
+									
+									try {
+										wait(2000);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+
 								tpsender.setPosition(pos.getX(), pos.getY(), pos.getZ());
 
 								this.tprequest.remove(0);

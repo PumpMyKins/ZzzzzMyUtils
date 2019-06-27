@@ -1,5 +1,6 @@
 package fr.pumpmykins.zutils.commands.tp;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.pumpmykins.zutils.utils.Home;
@@ -44,7 +45,7 @@ public class HomeCommand implements ICommand {
 	@Override
 	public List<String> getAliases() {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 

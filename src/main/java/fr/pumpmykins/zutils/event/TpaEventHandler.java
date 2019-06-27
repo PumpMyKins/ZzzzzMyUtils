@@ -18,7 +18,7 @@ public class TpaEventHandler {
 	@SubscribeEvent
 	public void playerDisconnect(PlayerLoggedOutEvent event) {
 		
-		for(int i = 0; i < this.tprequest.size(); i++) {
+		for(int i = 0; i < this.tprequest.size()-1; i++) {
 			
 			TpRequest tr = this.tprequest.get(i);
 			

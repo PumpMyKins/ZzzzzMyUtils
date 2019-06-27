@@ -13,6 +13,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,12 +33,12 @@ public class TpDenyCommand implements ICommand {
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return null;
+		return "Syntax : /tpdeny <name>";
 	}
 
 	@Override
 	public List<String> getAliases() {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -136,14 +137,14 @@ public class TpDenyCommand implements ICommand {
 						hm3.setStyle(PmkStyleTable.italicBlue());
 						hm.appendSibling(hm2);
 						hm.appendSibling(hm3);
-						tpsender.sendMessage(hm); 
+						tpreceiver.sendMessage(hm); 
 
 						ITextComponent hmr = new TextComponentString(tpsender.getName());
 						hmr.setStyle(PmkStyleTable.boldDarkRed());
 						ITextComponent hmr2 = new TextComponentString(" a refusé d'être téléporté à vous !");
 						hmr2.setStyle(PmkStyleTable.italicBlue());
 						hmr.appendSibling(hmr2);
-						tpreceiver.sendMessage(hmr);
+						tpsender.sendMessage(hmr);
 
 					}
 

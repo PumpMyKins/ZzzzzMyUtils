@@ -15,9 +15,11 @@ public class HomeData extends WorldSavedData {
 
 	public HomeData(String key) {
 		super(key);
+		this.homeList =new ArrayList<Home>();
 	}
 	public HomeData() {
 		super(MainPmkUtils.getHomeKey());
+		this.homeList =new ArrayList<Home>();
 	}
 	
 	private List<Home> homeList;

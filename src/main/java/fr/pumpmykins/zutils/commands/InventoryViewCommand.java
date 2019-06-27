@@ -1,5 +1,6 @@
 package fr.pumpmykins.zutils.commands;
 
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
@@ -35,7 +36,7 @@ public class InventoryViewCommand implements ICommand {
 	@Override
 	public List<String> getAliases() {
 		
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -69,11 +70,7 @@ public class InventoryViewCommand implements ICommand {
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
 			BlockPos targetPos) {
-		if(args.length == 0) {
-			
-			return CommandBase.getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
-		}
-		return null;
+		return CommandBase.getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package fr.pumpmykins.zutils.commands.tp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
@@ -39,13 +40,13 @@ public class TpaListCommand implements ICommand {
 	@Override
 	public String getUsage(ICommandSender sender) {
 		// TODO Auto-generated method stub
-		return "/tplist";
+		return "Syntax : /tplist";
 	}
 
 	@Override
 	public List<String> getAliases() {
 		// TODO Auto-generated method stub
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -74,9 +75,10 @@ public class TpaListCommand implements ICommand {
 			hm.appendSibling(hm3);
 			sender.sendMessage(hm);
         	
+			int i = 1;
+			
 			for(TpRequest tr : ltr) {
 				
-				int i = 1;
 				
 				ITextComponent it = new TextComponentString(Integer.toString(i)+".");
 				it.setStyle(PmkStyleTable.italicBlue());
@@ -113,7 +115,7 @@ public class TpaListCommand implements ICommand {
 	@Override
 	public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

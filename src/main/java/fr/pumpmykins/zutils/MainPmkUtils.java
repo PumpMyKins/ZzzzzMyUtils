@@ -86,10 +86,11 @@ public class MainPmkUtils {
 		if(ModConfig.homecat.active) {
 
 			this.homedata = getHomeData(event.getServer().getWorld(0));
-
+			
 			event.registerServerCommand(new HomeCommand(this.homedata));
 			event.registerServerCommand(new DelHomeCommand(this.homedata));
 			event.registerServerCommand(new SetHomeCommand(this.homedata));
+			
 		}
 		if(ModConfig.tpacat.active) {
 
@@ -112,12 +113,13 @@ public class MainPmkUtils {
 			
 			event.registerServerCommand(new InventoryViewCommand());
 		}
+		/*
 		if(ModConfig.banitemcat.active) {
 			
 			event.registerServerCommand(new BanItemCommand());
 			event.registerServerCommand(new ListBanItemCommand());
 			event.registerServerCommand(new UnbanItemCommand());
-		}
+		}*/
 	}
 
 	@SubscribeEvent

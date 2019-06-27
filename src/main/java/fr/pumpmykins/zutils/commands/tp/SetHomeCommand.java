@@ -1,5 +1,6 @@
 package fr.pumpmykins.zutils.commands.tp;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.pumpmykins.zutils.MainPmkUtils.ModConfig;
@@ -41,13 +42,13 @@ public class SetHomeCommand implements ICommand {
 	@Override
 	public String getUsage(ICommandSender sender) {
 
-		return null;
+		return "Syntax : /sethome <homename>";
 	}
 
 	@Override
 	public List<String> getAliases() {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

@@ -1,9 +1,11 @@
 package fr.pumpmykins.zutils.commands.tp;
 
+import java.util.Collections;
 import java.util.List;
 
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import fr.pumpmykins.zutils.utils.TpRequest;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -37,13 +39,13 @@ public class TpaCommand implements ICommand {
 	@Override
 	public String getUsage(ICommandSender sender) {
 
-		return null;
+		return "Syntax : /tpa <name>";
 	}
 
 	@Override
 	public List<String> getAliases() {
 
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -106,7 +108,7 @@ public class TpaCommand implements ICommand {
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
 			BlockPos targetPos) {
-		return null;
+		return CommandBase.getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
 	}
 
 	@Override
