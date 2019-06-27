@@ -77,6 +77,7 @@ public class MainPmkUtils {
 		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.OP, "rank.tier2");
 		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.OP, "rank.tier3");
 		PermissionAPI.registerNode("zutils.command.invview", DefaultPermissionLevel.OP, "zutils.command.invview inv view permision");
+		PermissionAPI.registerNode("zutils.command.setspawn", DefaultPermissionLevel.OP, "zutils.command.setspawn setspawn permission");
 	}
 
 	@EventHandler
@@ -162,7 +163,7 @@ public class MainPmkUtils {
 
 		}
 
-		private static class ModuleSpawn {
+		public static class ModuleSpawn {
 
 			@Config.Name("Activer le Module Spawn :")
 			public boolean active=true; 
@@ -173,6 +174,23 @@ public class MainPmkUtils {
 
 			public int dim = 0;
 
+			public void setZ(int z) {
+				this.z = z;
+			}
+
+			public void setY(int y) {
+				this.y = y;
+			}
+
+			public void setX(int x) {
+				this.x = x;
+			}
+
+			public void setDim(int dim) {
+				this.dim = dim;
+			}
+
+			
 		}
 
 		public static class ModuleTpa {
