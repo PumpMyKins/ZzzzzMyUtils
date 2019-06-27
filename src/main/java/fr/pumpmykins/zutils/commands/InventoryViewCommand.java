@@ -46,7 +46,13 @@ public class InventoryViewCommand implements ICommand {
 			EntityPlayerMP self = (EntityPlayerMP) sender;
 			EntityPlayerMP aim = server.getPlayerList().getPlayerByUsername(args[0]);
 			
-			self.displayGUIChest(aim.inventory);
+			if(aim != null) {
+			
+				self.displayGUIChest(aim.inventory);
+			} else {
+				
+				getUsage(sender);
+			}
 		} else {
 			
 			getUsage(sender);
