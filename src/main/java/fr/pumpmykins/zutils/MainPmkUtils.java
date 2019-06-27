@@ -197,7 +197,7 @@ public class MainPmkUtils {
 
 			public boolean active=true;
 
-			public long expirationTime = 180000;
+			public int expirationTime = 180000;
 		}
 
 		private static class ModuleStaff {
