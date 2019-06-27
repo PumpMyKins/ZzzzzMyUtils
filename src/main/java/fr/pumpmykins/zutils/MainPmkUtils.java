@@ -76,6 +76,7 @@ public class MainPmkUtils {
 		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier1");
 		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.OP, "rank.tier2");
 		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.OP, "rank.tier3");
+		PermissionAPI.registerNode("zutils.command.invview", DefaultPermissionLevel.OP, "zutils.command.invview inv view permision");
 	}
 
 	@EventHandler
