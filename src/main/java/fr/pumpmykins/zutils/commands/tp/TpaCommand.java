@@ -66,16 +66,30 @@ public class TpaCommand implements ICommand {
 
 					this.tprequest.add(tr);
 
-					//TODO message clickable
-					ITextComponent init1 = new TextComponentString(receiver + "souhaite se teleporter a vous ( accepter / refuser )");
-					init1.setStyle(PmkStyleTable.orangeBold());
-					receiver.sendMessage(init1);
+					server.commandManager.executeCommand(receiver, "/tplist");
+					
+					ITextComponent init = new TextComponentString("Le joueur ");
+					ITextComponent suite = new TextComponentString(args[0]);
+					ITextComponent suite2 = new TextComponentString(" à reçu votre demande de Tpa !");
+					suite.setStyle(PmkStyleTable.rougeBold());
+					suite2.setStyle(PmkStyleTable.italicBlue());
+					init.setStyle(PmkStyleTable.italicBlue());
+					init.appendSibling(suite);
+					init.appendSibling(suite2);
+					
+					sender.sendMessage(init);
 
 				} else {
 
-					//TODO message 
-					ITextComponent init = new TextComponentString("joueur inconnue");
+					ITextComponent init = new TextComponentString("Le joueur ");
+					ITextComponent suite = new TextComponentString(args[0]);
+					ITextComponent suite2 = new TextComponentString(" n'éxiste pas !");
+					suite.setStyle(PmkStyleTable.rougeBold());
+					suite2.setStyle(PmkStyleTable.orangeBold());
 					init.setStyle(PmkStyleTable.orangeBold());
+					init.appendSibling(suite);
+					init.appendSibling(suite2);
+					
 					sender.sendMessage(init);
 
 				}
