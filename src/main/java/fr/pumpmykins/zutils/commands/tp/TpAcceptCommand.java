@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import fr.pumpmykins.zutils.MainPmkUtils.ModConfig;
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
@@ -64,7 +65,7 @@ public class TpAcceptCommand implements ICommand {
 				
 				Date d = new Date();
 				
-				if(tr.getDate().getTime()+30000 < d.getTime()) {
+				if(tr.getDate().getTime()+ModConfig.tpacat.expirationTime < d.getTime()) {
 					
 					this.tprequest.remove(i);
 				}

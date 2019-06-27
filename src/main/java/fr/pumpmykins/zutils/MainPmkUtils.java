@@ -170,10 +170,11 @@ public class MainPmkUtils {
 
 		}
 
-		private static class ModuleTpa {
+		public static class ModuleTpa {
 
 			public boolean active=true;
 
+			public long expirationTime = 180000;
 		}
 
 		private static class ModuleStaff {

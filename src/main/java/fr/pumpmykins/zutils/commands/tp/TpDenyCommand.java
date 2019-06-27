@@ -1,5 +1,6 @@
 package fr.pumpmykins.zutils.commands.tp;
 
+import fr.pumpmykins.zutils.MainPmkUtils.ModConfig;
 import fr.pumpmykins.zutils.utils.PmkStyleTable;
 import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.command.CommandException;
@@ -51,7 +52,7 @@ public class TpDenyCommand implements ICommand {
 
 			Date d = new Date();
 
-			if(tr.getDate().getTime()+30000 < d.getTime()) {
+			if(tr.getDate().getTime()+ModConfig.tpacat.expirationTime < d.getTime()) {
 
 				this.tprequest.remove(i);
 			}
