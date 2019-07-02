@@ -17,13 +17,18 @@ import fr.pumpmykins.zutils.event.TpaEventHandler;
 import fr.pumpmykins.zutils.commands.tp.TpAcceptCommand;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
+import fr.pumpmykins.zutils.utils.BanChestData;
 import fr.pumpmykins.zutils.utils.HomeData;
 import fr.pumpmykins.zutils.utils.TpRequest;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +43,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.server.permission.DefaultPermissionLevel;
 import net.minecraftforge.server.permission.PermissionAPI;
 
@@ -47,6 +54,8 @@ public class MainPmkUtils {
 	@Instance("zpmkutils")
 	public static MainPmkUtils instance;
 
+	public static MinecraftServer server;
+
 	public static Logger logger;
 
 	private static final String MODID = "zpmkutils";
@@ -55,29 +64,32 @@ public class MainPmkUtils {
 
 	private static final String SPAWN_KEY = MODID+"_spawn";
 
+	private static final String BANITEM_KEY = MODID+"_banitem";
+
 	private HomeData homedata;
 
 	private List<TpRequest> tprequest;
 
-	private List<ItemStack> banitem;
-	
+	private BanChestData chest;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
 		logger = event.getModLog();
 
 	}
-	
-	
-	
+
+
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
-		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.OP, "rank.tier1");
-		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.OP, "rank.tier2");
-		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.OP, "rank.tier3");
+		PermissionAPI.registerNode("rank.tier1", DefaultPermissionLevel.NONE, "rank.tier1");
+		PermissionAPI.registerNode("rank.tier2", DefaultPermissionLevel.NONE, "rank.tier2");
+		PermissionAPI.registerNode("rank.tier3", DefaultPermissionLevel.NONE, "rank.tier3");
 		PermissionAPI.registerNode("zutils.command.invview", DefaultPermissionLevel.OP, "zutils.command.invview inv view permision");
 		PermissionAPI.registerNode("zutils.command.setspawn", DefaultPermissionLevel.OP, "zutils.command.setspawn setspawn permission");
+		PermissionAPI.registerNode("zutils.command.banitem", DefaultPermissionLevel.OP, "zutils.command.banitem banitem permission");
 	}
 
 	@EventHandler
@@ -86,11 +98,11 @@ public class MainPmkUtils {
 		if(ModConfig.homecat.active) {
 
 			this.homedata = getHomeData(event.getServer().getWorld(0));
-			
+
 			event.registerServerCommand(new HomeCommand(this.homedata));
 			event.registerServerCommand(new DelHomeCommand(this.homedata));
 			event.registerServerCommand(new SetHomeCommand(this.homedata));
-			
+
 		}
 		if(ModConfig.tpacat.active) {
 
@@ -101,25 +113,30 @@ public class MainPmkUtils {
 			event.registerServerCommand(new TpaCommand(this.tprequest));
 			event.registerServerCommand(new TpaHereCommand(this.tprequest));
 			event.registerServerCommand(new TpaListCommand(this.tprequest));
-			
+
 			MinecraftForge.EVENT_BUS.register(new TpaEventHandler(this.tprequest));
 		}
 		if(ModConfig.spawncat.active) {
-			
+
 			event.registerServerCommand(new SetSpawnCommand());
 			event.registerServerCommand(new SpawnCommand());
 		}
 		if(ModConfig.staffcat.active) {
-			
+
 			event.registerServerCommand(new InventoryViewCommand());
 		}
-		/*
 		if(ModConfig.banitemcat.active) {
-			
-			event.registerServerCommand(new BanItemCommand());
-			event.registerServerCommand(new ListBanItemCommand());
-			event.registerServerCommand(new UnbanItemCommand());
-		}*/
+
+			this.chest = getBanItemData(event.getServer().getWorld(0));
+			this.chest.setItemban(getItemBan(event.getServer()));
+
+			event.registerServerCommand(new BanItemCommand(this.chest));
+			event.registerServerCommand(new ListBanItemCommand(this.chest));
+			event.registerServerCommand(new UnbanItemCommand(this.chest));
+
+
+		}
+
 	}
 
 	@SubscribeEvent
@@ -130,7 +147,6 @@ public class MainPmkUtils {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Config(modid = MODID)
 	public static class ModConfig {
 
@@ -143,9 +159,9 @@ public class MainPmkUtils {
 		public static ModuleTpa tpacat = new ModuleTpa();
 
 		public static ModuleStaff staffcat = new ModuleStaff();
-		
+
 		public static ModuleBanItem banitemcat = new ModuleBanItem(); 
-		
+
 		public static class ModuleHome {
 
 			@Config.Name("Activer le Module Home :")
@@ -192,24 +208,34 @@ public class MainPmkUtils {
 				this.dim = dim;
 			}
 
-			
+
 		}
 
 		public static class ModuleTpa {
 
+			@Config.Name("Activer le Module Tpa :")
 			public boolean active=true;
 
 			public int expirationTime = 180000;
 		}
 
-		private static class ModuleStaff {
+		public static class ModuleStaff {
 
+			@Config.Name("Activer le Module Staff :")
 			public boolean active=true;
 		}
-		
-		private static class ModuleBanItem {
-			
+
+		public static class ModuleBanItem {
+
+			@Config.Name("Activer le Module BanItem :")
 			public boolean active=true;
+
+			@Config.Comment("Position du premier coffre de ban Item")
+			public int z = 0;
+			public int y = 5;
+			public int x = 0;
+
+			public int dim = 0;
 		}
 
 	}
@@ -233,6 +259,63 @@ public class MainPmkUtils {
 		if(instance.isDirty()) {
 			storage.setData(HOME_KEY, instance);
 		}
+	}
+
+	public static BanChestData getBanItemData(World w) {
+
+		MapStorage storage = w.getMapStorage();
+		BanChestData instance = (BanChestData) storage.getOrLoadData(BanChestData.class, BANITEM_KEY);
+		if(instance == null) {
+
+			instance = new BanChestData();
+			storage.setData(BANITEM_KEY, instance);
+		}
+
+
+		return instance;
+	}
+
+	public static void setBanItemData(World w) {
+
+		MapStorage storage = w.getMapStorage();
+		BanChestData instance = (BanChestData) storage.getOrLoadData(BanChestData.class, BANITEM_KEY);
+		if(instance.isDirty()) {
+			storage.setData(BANITEM_KEY, instance);
+		}
+	}
+
+	public List<ItemStack> getItemBan(MinecraftServer server) {
+
+		List<ItemStack> islist = new ArrayList<ItemStack>();
+
+		World world = server.getWorld(0);
+		
+		if(!this.chest.getAllChest().isEmpty()) {
+			for(Iterator<BlockPos> bpiterator = this.chest.getAllChest().iterator(); bpiterator.hasNext();) {
+				
+				BlockPos pos = bpiterator.next();
+				
+				if(!world.getBlockState(pos).toString().equals("minecraft:chest")) {
+					
+					System.out.println("THIS BLOCK IS NOT A CHEST ! " + pos.toString());
+					this.chest.removeChest(pos);
+					continue;
+				}
+				TileEntity te = world.getTileEntity(pos);
+
+				IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+				for(int i = 0; i < ih.getSlots(); i++) {
+
+					ItemStack is = ih.getStackInSlot(i);
+					if(!is.isEmpty() && !islist.contains(is)) {
+						islist.add(is);
+					}
+				}
+
+			}
+		}
+		return islist;
 	}
 
 	public static MainPmkUtils getInstance() {
@@ -263,5 +346,13 @@ public class MainPmkUtils {
 		return SPAWN_KEY;
 	}
 
+	public static String getBanItemKey() {
+
+		return BANITEM_KEY;
+	}
+
+	public static MinecraftServer getServer() {
+		return server;
+	}
 
 }
