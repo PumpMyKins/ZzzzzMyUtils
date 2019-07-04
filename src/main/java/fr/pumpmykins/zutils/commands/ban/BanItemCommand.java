@@ -21,7 +21,7 @@ public class BanItemCommand implements ICommand {
 	private BanChestData banitem;
 
 	public BanItemCommand(BanChestData banitem2) {
-		
+
 		this.banitem = banitem2;
 	}
 
@@ -51,60 +51,45 @@ public class BanItemCommand implements ICommand {
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
+
 		if(sender instanceof EntityPlayer) {
-			
+
 			EntityPlayer player = (EntityPlayer) sender;
-			
+
 			if(!player.getHeldItemMainhand().isEmpty()) {
-				
-				if(args.length > 0) {
-					
-					ItemStack hand = player.getHeldItemMainhand();
-					hand.setCount(1);
-					
-					if(this.banitem.addBanItem(hand, server)) {
-					
-						ITextComponent hm = new TextComponentString("Vous avez ban l'item : ");
-						hm.setStyle(PmkStyleTable.italicBlue());
-						ITextComponent hm2 = new TextComponentString(hand.getDisplayName());
-						hm2.setStyle(PmkStyleTable.boldDarkRed());
-						ITextComponent hm3 = new TextComponentString(" !");
-						hm3.setStyle(PmkStyleTable.italicBlue());
-						hm.appendSibling(hm2);
-						hm.appendSibling(hm3);
-						
-						sender.sendMessage(hm);
-					
-					} else {
-						
-						ITextComponent hm = new TextComponentString("Une erreur est survenue lors du ban de : ");
-						hm.setStyle(PmkStyleTable.italicBlue());
-						ITextComponent hm2 = new TextComponentString(hand.getDisplayName());
-						hm2.setStyle(PmkStyleTable.boldDarkRed());
-						ITextComponent hm3 = new TextComponentString(" !");
-						hm3.setStyle(PmkStyleTable.italicBlue());
-						hm.appendSibling(hm2);
-						hm.appendSibling(hm3);
-						
-						sender.sendMessage(hm);
-					}
-					
-				} else {
-					
-					ITextComponent hm = new TextComponentString("Vous devez spécifier une ");
+
+				ItemStack hand = player.getHeldItemMainhand();
+				hand.setCount(1);
+
+				if(this.banitem.addBanItem(hand, server)) {
+
+					ITextComponent hm = new TextComponentString("Vous avez ban l'item : ");
 					hm.setStyle(PmkStyleTable.italicBlue());
-					ITextComponent hm2 = new TextComponentString("raison");
+					ITextComponent hm2 = new TextComponentString(hand.getDisplayName());
 					hm2.setStyle(PmkStyleTable.boldDarkRed());
-					ITextComponent hm3 = new TextComponentString(" pour ban un Item !");
+					ITextComponent hm3 = new TextComponentString(" !");
 					hm3.setStyle(PmkStyleTable.italicBlue());
 					hm.appendSibling(hm2);
 					hm.appendSibling(hm3);
-					
+
+					sender.sendMessage(hm);
+
+				} else {
+
+					ITextComponent hm = new TextComponentString("Une erreur est survenue lors du ban de : ");
+					hm.setStyle(PmkStyleTable.italicBlue());
+					ITextComponent hm2 = new TextComponentString(hand.getDisplayName());
+					hm2.setStyle(PmkStyleTable.boldDarkRed());
+					ITextComponent hm3 = new TextComponentString(" !");
+					hm3.setStyle(PmkStyleTable.italicBlue());
+					hm.appendSibling(hm2);
+					hm.appendSibling(hm3);
+
 					sender.sendMessage(hm);
 				}
+
 			} else {
-				
+
 				ITextComponent hm = new TextComponentString("Vous devez tenir l'item en");
 				hm.setStyle(PmkStyleTable.italicBlue());
 				ITextComponent hm2 = new TextComponentString(" main");
@@ -113,7 +98,7 @@ public class BanItemCommand implements ICommand {
 				hm3.setStyle(PmkStyleTable.italicBlue());
 				hm.appendSibling(hm2);
 				hm.appendSibling(hm3);
-				
+
 				sender.sendMessage(hm);
 			}
 		}

@@ -58,7 +58,7 @@ public class ListBanItemCommand implements ICommand {
 		
 		for(ItemStack bi : this.banitem.getItemban()) {
 			
-			ITextComponent tc = new TextComponentString("Item : " + bi.getDisplayName());
+			ITextComponent tc = new TextComponentString("Item : §4" + bi.getDisplayName());
 			tc.setStyle(PmkStyleTable.italicBlue());
 			
 			sender.sendMessage(tc);

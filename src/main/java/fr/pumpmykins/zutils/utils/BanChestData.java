@@ -19,6 +19,7 @@ import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraft.block.Block;
 
 public class BanChestData extends WorldSavedData {
 
@@ -92,39 +93,46 @@ public class BanChestData extends WorldSavedData {
 
 	public boolean addBanItem(ItemStack is, MinecraftServer server) {
 
-		if(this.itemban.contains(is)) {
+		is.setCount(1);
 
-			return false;
-		} else {
+		for(int i = 0; i < this.itemban.size(); i++) {
 
-			if(!this.getAllChest().isEmpty()) {
+			if(ItemStack.areItemsEqual(is, this.itemban.get(i))) {
 
-				for(Iterator<BlockPos> bpiterator = this.getAllChest().iterator(); bpiterator.hasNext();) {
+				return false;
+			}
+		}
+		System.out.println(this.getAllChest().isEmpty());
+		if(!this.getAllChest().isEmpty()) {
 
-					BlockPos bp = bpiterator.next();
-					World w = server.getEntityWorld();
+			for(Iterator<BlockPos> bpiterator = this.getAllChest().iterator(); bpiterator.hasNext();) {
 
-					if(!w.getBlockState(bp).toString().equals("minecraft:chest")) {
+				BlockPos bp = bpiterator.next();
 
-						System.out.println("THIS BLOCK IS NOT A CHEST ! " + bp.toString());
-						this.removeChest(bp);
-						continue;
-					}
+				System.out.println(bp.toString());
 
-					TileEntity te = w.getTileEntity(bp);
-					
-					IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-					
-					for(int i = 0; i < ih.getSlots(); i++) {
+				World w = server.getEntityWorld();
 
-						ItemStack istack = ih.getStackInSlot(i);
-						if(istack.isEmpty()) {
+				if(!w.getBlockState(bp).getBlock().equals((Block) Blocks.CHEST)) {
 
-							ih.insertItem(i, is, false);
-							this.itemban.add(is);
-							return true;
+					System.out.println("ERROR  : THIS BLOCK IS NOT A CHEST ! " + bp.toString());
+					this.removeChest(bp);
+					continue;
+				}
 
-						}
+				TileEntity te = w.getTileEntity(bp);
+
+				IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+				for(int i = 0; i < ih.getSlots(); i++) {
+
+					ItemStack istack = ih.getStackInSlot(i);
+					if(istack.isEmpty()) {
+
+						ih.insertItem(i, is, false);
+						this.itemban.add(is);
+						return true;
+
 					}
 				}
 			}
@@ -136,29 +144,23 @@ public class BanChestData extends WorldSavedData {
 
 	public boolean removeBanItem(ItemStack is, MinecraftServer server) {
 
-		if(!this.itemban.contains(is)) {
+		for(BlockPos bp : this.getAllChest()) {
 
-			return false;
-		} else {
+			World w = server.getEntityWorld();
 
-			for(BlockPos bp : this.getAllChest()) {
+			TileEntity te = w.getTileEntity(bp);
 
-				World w = server.getEntityWorld();
+			IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-				TileEntity te = w.getTileEntity(bp);
+			for(int i = 0; i < ih.getSlots(); i++) {
 
-				IItemHandler ih = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				ItemStack istack = ih.getStackInSlot(i);
+				if(ItemStack.areItemsEqual(istack, is)) {
+					
+					ih.insertItem(i, ItemStack.EMPTY, false);
+					this.itemban.remove(is);
+					return true;
 
-				for(int i = 0; i < ih.getSlots(); i++) {
-
-					ItemStack istack = ih.getStackInSlot(i);
-					if(istack.equals(is)) {
-
-						ih.extractItem(i, 65, false);
-						this.itemban.remove(is);
-						return true;
-
-					}
 				}
 			}
 		}
@@ -186,7 +188,9 @@ public class BanChestData extends WorldSavedData {
 		if(!exist) {
 
 			IBlockState chest = Blocks.CHEST.getDefaultState();
-			
+
+			server.getEntityWorld().setBlockState(newchest, Blocks.AIR.getDefaultState());
+
 			if(server.getEntityWorld().setBlockState(newchest, chest)) {
 
 				this.chestPos.add(newchest);

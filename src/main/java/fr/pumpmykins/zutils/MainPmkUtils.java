@@ -13,6 +13,7 @@ import fr.pumpmykins.zutils.commands.tp.TpDenyCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaHereCommand;
 import fr.pumpmykins.zutils.commands.tp.TpaListCommand;
+import fr.pumpmykins.zutils.event.BanItemEventHandler;
 import fr.pumpmykins.zutils.event.TpaEventHandler;
 import fr.pumpmykins.zutils.commands.tp.TpAcceptCommand;
 
@@ -25,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 import fr.pumpmykins.zutils.utils.BanChestData;
 import fr.pumpmykins.zutils.utils.HomeData;
 import fr.pumpmykins.zutils.utils.TpRequest;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -47,6 +49,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.server.permission.DefaultPermissionLevel;
 import net.minecraftforge.server.permission.PermissionAPI;
+import net.minecraft.block.Block;
 
 @Mod(useMetadata=true, modid = "zpmkutils")
 public class MainPmkUtils {
@@ -134,7 +137,7 @@ public class MainPmkUtils {
 			event.registerServerCommand(new ListBanItemCommand(this.chest));
 			event.registerServerCommand(new UnbanItemCommand(this.chest));
 
-
+			MinecraftForge.EVENT_BUS.register(new BanItemEventHandler(this.chest));
 		}
 
 	}
@@ -295,7 +298,7 @@ public class MainPmkUtils {
 				
 				BlockPos pos = bpiterator.next();
 				
-				if(!world.getBlockState(pos).toString().equals("minecraft:chest")) {
+				if(!world.getBlockState(pos).getBlock().equals((Block) Blocks.CHEST)) {
 					
 					System.out.println("THIS BLOCK IS NOT A CHEST ! " + pos.toString());
 					this.chest.removeChest(pos);
