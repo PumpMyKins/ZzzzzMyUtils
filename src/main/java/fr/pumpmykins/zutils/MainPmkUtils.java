@@ -51,7 +51,7 @@ import net.minecraftforge.server.permission.DefaultPermissionLevel;
 import net.minecraftforge.server.permission.PermissionAPI;
 import net.minecraft.block.Block;
 
-@Mod(useMetadata=true, modid = "zpmkutils")
+@Mod(useMetadata=true, modid = "zpmkutils", acceptableRemoteVersions = "*")
 public class MainPmkUtils {
 
 	@Instance("zpmkutils")
